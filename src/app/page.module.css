@@ -1,0 +1,342 @@
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background-color: var(--color-background);
+}
+
+.heroImageWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.heroImage {
+  object-fit: cover;
+  object-position: center;
+}
+
+.heroImageOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(248, 247, 242, 0.95) 0%, rgba(248, 247, 242, 0.8) 50%, rgba(248, 247, 242, 0.4) 100%);
+  z-index: 2;
+}
+
+@media (min-width: 900px) {
+  .heroImageOverlay {
+    background: linear-gradient(to right, rgba(248, 247, 242, 1) 0%, rgba(248, 247, 242, 0.85) 35%, rgba(248, 247, 242, 0) 70%);
+  }
+}
+
+.heroContainer {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.heroContent {
+  max-width: 550px;
+}
+
+.heroBadge {
+  display: inline-block;
+  background-color: rgba(21, 71, 38, 0.1);
+  color: var(--color-primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--spacing-lg);
+}
+
+.heroTitle {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  line-height: 1.1;
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-primary);
+  letter-spacing: -0.02em;
+}
+
+.heroTitle italic {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.heroDescription {
+  font-size: 1.1rem;
+  color: var(--color-text-main);
+  margin-bottom: var(--spacing-2xl);
+  line-height: 1.6;
+  max-width: 450px;
+}
+
+.heroActions {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btnPrimary {
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+  padding: 14px 28px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  border: none;
+  transition: transform 0.2s, background-color 0.2s;
+  display: inline-flex;
+  text-decoration: none;
+}
+
+.btnPrimary:hover {
+  background-color: #e57a20;
+  transform: translateY(-2px);
+}
+
+.btnOutline {
+  background-color: var(--color-white);
+  color: var(--color-primary);
+  padding: 14px 28px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  border: 1px solid var(--color-primary);
+  transition: all 0.2s;
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+}
+
+.btnOutline:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+/* Base keyframe animations */
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animateFadeUp {
+  opacity: 0; 
+  animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Section Common */
+.section {
+  padding: var(--spacing-3xl) 0;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: var(--spacing-2xl);
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-xs);
+}
+
+.sectionSubtitle {
+  color: var(--color-text-muted);
+  max-width: 600px;
+}
+
+.linkAll {
+  color: var(--color-primary);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.linkAll:hover {
+  text-decoration: underline;
+}
+
+/* Products Grid */
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--spacing-xl);
+}
+
+/* Story Section */
+.storySection {
+  background-color: #F8F7F2;
+  position: relative;
+}
+
+.storyContainer {
+  display: grid;
+  align-items: center;
+  gap: var(--spacing-3xl);
+}
+
+@media (min-width: 768px) {
+  .storyContainer {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.storyImageWrapper {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 4/5;
+}
+
+.storyImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.storySubtitle {
+  color: var(--color-secondary);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--spacing-sm);
+}
+
+.storyFeatures {
+  margin-top: var(--spacing-2xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.feature {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.featureIcon {
+  color: var(--color-secondary);
+  flex-shrink: 0;
+}
+
+.featureTitle {
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 4px;
+}
+
+.featureDesc {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+/* Testimonials */
+.testimonialsSection {
+  background-color: #F8F7F2;
+  text-align: center;
+  padding-top: var(--spacing-3xl);
+}
+
+.testimonialsSubtitle {
+  font-style: italic;
+  color: var(--color-text-muted);
+  margin-top: var(--spacing-sm);
+}
+
+.testimonialsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-2xl);
+  text-align: left;
+}
+
+.testimonialCard {
+  background: var(--color-white);
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+}
+
+.stars {
+  color: var(--color-secondary);
+  margin-bottom: var(--spacing-md);
+  letter-spacing: 2px;
+}
+
+.testimonialText {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-text-main);
+}
+
+.testimonialAuthor {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.authorAvatar {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  background-color: #eee;
+}
+
+.authorName {
+  font-weight: 600;
+  color: var(--color-primary);
+  font-size: 0.95rem;
+}
+
+.authorTitle {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.testimonialCard.highlighted {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.testimonialCard.highlighted .testimonialText {
+  color: var(--color-white);
+}
+
+.testimonialCard.highlighted .authorName {
+  color: var(--color-white);
+}
+
+.testimonialCard.highlighted .authorTitle {
+  color: rgba(255, 255, 255, 0.7);
+}

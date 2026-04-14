@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Victor’s Juice Co. | Jugo Detox</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-surface": "#1b1c1a",
+              "outline-variant": "#bfcab9",
+              "surface-container-lowest": "#ffffff",
+              "surface-container-low": "#f5f3f0",
+              "secondary": "#964900",
+              "error-container": "#ffdad6",
+              "inverse-surface": "#30312f",
+              "on-primary-fixed": "#002204",
+              "surface": "#fbf9f6",
+              "inverse-on-surface": "#f2f0ed",
+              "tertiary-fixed-dim": "#ffb0c8",
+              "surface-container-highest": "#e4e2df",
+              "on-tertiary-container": "#ffc4d5",
+              "surface-dim": "#dbdad7",
+              "outline": "#6f7a6c",
+              "secondary-fixed-dim": "#ffb786",
+              "primary-fixed-dim": "#7fdb7c",
+              "on-error-container": "#93000a",
+              "on-tertiary": "#ffffff",
+              "background": "#fbf9f6",
+              "surface-variant": "#e4e2df",
+              "tertiary-container": "#9e345f",
+              "tertiary-fixed": "#ffd9e2",
+              "on-secondary-fixed": "#311300",
+              "on-secondary-fixed-variant": "#723600",
+              "on-tertiary-fixed-variant": "#831e4a",
+              "on-primary": "#ffffff",
+              "on-primary-fixed-variant": "#005313",
+              "surface-tint": "#066e1e",
+              "secondary-fixed": "#ffdcc6",
+              "on-tertiary-fixed": "#3e001d",
+              "on-secondary": "#ffffff",
+              "primary-fixed": "#9bf896",
+              "primary": "#005012",
+              "error": "#ba1a1a",
+              "inverse-primary": "#7fdb7c",
+              "surface-container-high": "#eae8e5",
+              "surface-bright": "#fbf9f6",
+              "on-surface-variant": "#3f493d",
+              "surface-container": "#efeeeb",
+              "primary-container": "#006b1b",
+              "secondary-container": "#fc820c",
+              "on-background": "#1b1c1a",
+              "on-secondary-container": "#5e2c00",
+              "on-primary-container": "#8de989",
+              "tertiary": "#7f1b47",
+              "on-error": "#ffffff"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif"],
+              "body": ["Plus Jakarta Sans"],
+              "label": ["Plus Jakarta Sans"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background-color: #fbf9f6;
+      }
+      .font-serif {
+        font-family: 'Noto Serif', serif;
+      }
+    </style>
+</head>
+<body class="text-on-surface antialiased overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl shadow-sm shadow-green-900/5">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-7xl mx-auto">
+<div class="flex items-center gap-8">
+<a class="text-2xl font-serif italic text-green-900 dark:text-green-50" href="#">Victor’s Juice Co.</a>
+<div class="hidden md:flex gap-6 items-center">
+<a class="text-zinc-600 dark:text-zinc-400 hover:text-green-800 transition-colors text-sm font-medium" href="#">Inicio</a>
+<a class="text-green-700 dark:text-green-400 font-semibold border-b-2 border-orange-500 pb-1 text-sm font-medium" href="#">Tienda</a>
+<a class="text-zinc-600 dark:text-zinc-400 hover:text-green-800 transition-colors text-sm font-medium" href="#">Sobre Nosotros</a>
+<a class="text-zinc-600 dark:text-zinc-400 hover:text-green-800 transition-colors text-sm font-medium" href="#">Reseñas</a>
+<a class="text-zinc-600 dark:text-zinc-400 hover:text-green-800 transition-colors text-sm font-medium" href="#">Contacto</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:text-orange-600 transition-all">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+</button>
+<button class="md:hidden p-2">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="pt-28 pb-20">
+<!-- Product Detail Shell -->
+<section class="max-w-7xl mx-auto px-6 md:px-12">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+<!-- Image Section: The Modern Orchard Aesthetic -->
+<div class="relative group">
+<div class="absolute -top-10 -left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl -z-10"></div>
+<div class="bg-surface-container-low rounded-xl overflow-hidden relative aspect-[4/5] flex items-center justify-center">
+<img alt="Jugo Detox Premium" class="w-full h-full object-cover mix-blend-multiply transform transition-transform duration-700 group-hover:scale-105" data-alt="Premium cold-pressed green juice bottle on a minimalist stone surface with fresh kale leaves and sunlight streaming from a side window" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGKFgnPgOAhjkyUP0BmS2IhxWfBTV4iVl78nTYOlAvFXdLeZm4lk7wOWJDkzM8RDv49z5YD8y3LraXTaGoA1fTiknQsXxTbCok-vDofnLL_JUBZ-PSXLuEtYpE3gBdQ0jLwhCKYILw2nzWXTqSO6ug71v41GE77QW4lvwOXZ-A_QF63sYoJ7tDomYOj85_EuXx7Sqi7lQynbZnjsJ_F7bAvxAmt-JHmpdq5LfcIzivaMTx7XkUIXqKVIIS1VlvCE9Js5G9b0ycOPv8"/>
+<!-- Floating Glass Ingredient Detail -->
+<div class="absolute bottom-6 right-6 p-4 bg-white/40 backdrop-blur-xl border border-white/20 rounded-lg shadow-xl max-w-[180px]">
+<p class="text-[10px] uppercase tracking-widest font-bold text-primary mb-1">Cold-Pressed</p>
+<p class="text-xs text-on-surface font-medium leading-tight">Extraído en frío para preservar cada nutriente esencial.</p>
+</div>
+</div>
+</div>
+<!-- Product Info: Editorial Authority -->
+<div class="flex flex-col space-y-8">
+<nav class="flex gap-2 text-xs font-semibold text-outline tracking-wider uppercase">
+<a class="hover:text-primary transition-colors" href="#">Jugos</a>
+<span>/</span>
+<a class="text-primary" href="#">Detox Series</a>
+</nav>
+<div class="space-y-2">
+<h1 class="font-serif text-5xl md:text-6xl text-primary leading-tight tracking-tight">Jugo Detox</h1>
+<p class="text-3xl font-light text-secondary">$8.50 <span class="text-base text-outline line-through ml-2">$10.00</span></p>
+</div>
+<div class="prose prose-zinc">
+<p class="text-lg text-on-surface-variant leading-relaxed font-light">
+                            Una alquimia revitalizante de espinacas orgánicas, manzana verde crujiente y un toque de jengibre fresco. Diseñado para resetear tu cuerpo y elevar tu energía natural desde el primer sorbo.
+                        </p>
+</div>
+<!-- Ingredients & Benefits: Bento-style minimalist cards -->
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container rounded-lg p-5 flex flex-col gap-3">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="bolt">bolt</span>
+<div>
+<h4 class="font-bold text-sm text-on-surface">Energizante</h4>
+<p class="text-xs text-on-surface-variant">Impulso natural sin caídas.</p>
+</div>
+</div>
+<div class="bg-surface-container rounded-lg p-5 flex flex-col gap-3">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="eco">eco</span>
+<div>
+<h4 class="font-bold text-sm text-on-surface">100% Natural</h4>
+<p class="text-xs text-on-surface-variant">Sin azúcares ni químicos.</p>
+</div>
+</div>
+<div class="bg-surface-container rounded-lg p-5 flex flex-col gap-3">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="biotech">biotech</span>
+<div>
+<h4 class="font-bold text-sm text-on-surface">Antioxidante</h4>
+<p class="text-xs text-on-surface-variant">Combate el estrés celular.</p>
+</div>
+</div>
+<div class="bg-surface-container rounded-lg p-5 flex flex-col gap-3">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="shutter_speed">shutter_speed</span>
+<div>
+<h4 class="font-bold text-sm text-on-surface">Fresh Daily</h4>
+<p class="text-xs text-on-surface-variant">Embotellado cada mañana.</p>
+</div>
+</div>
+</div>
+<!-- Quantity & CTA -->
+<div class="pt-6 space-y-6">
+<div class="flex items-center gap-6">
+<label class="text-sm font-bold text-on-surface uppercase tracking-widest">Cantidad</label>
+<div class="flex items-center bg-surface-container-highest rounded-full px-4 py-2">
+<button class="w-8 h-8 flex items-center justify-center hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="remove">remove</span>
+</button>
+<span class="px-6 font-bold text-lg">1</span>
+<button class="w-8 h-8 flex items-center justify-center hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+</button>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="flex-1 bg-secondary-container text-on-secondary-container font-bold py-5 px-8 rounded-full hover:shadow-xl hover:shadow-orange-500/20 transform active:scale-[0.98] transition-all flex items-center justify-center gap-3">
+<span class="material-symbols-outlined" data-icon="shopping_basket">shopping_basket</span>
+                                Agregar al Carrito
+                            </button>
+<button class="p-5 border-2 border-outline-variant rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Product Specs: Organic Tonal Shift -->
+<section class="mt-24 bg-surface-container-low py-20">
+<div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-12">
+<div class="space-y-4">
+<h3 class="font-serif text-2xl text-primary">Ingredientes Reales</h3>
+<p class="text-on-surface-variant font-light leading-relaxed">
+                        No escondemos nada. Nuestro jugo Detox contiene: Manzana Verde (40%), Pepino (30%), Apio (15%), Espinaca (10%), Limón (4%) y Jengibre (1%).
+                    </p>
+</div>
+<div class="space-y-4">
+<h3 class="font-serif text-2xl text-primary">Compromiso Ético</h3>
+<p class="text-on-surface-variant font-light leading-relaxed">
+                        Trabajamos directamente con agricultores locales para asegurar que cada fruta sea recolectada en su punto óptimo de madurez.
+                    </p>
+</div>
+<div class="space-y-4">
+<h3 class="font-serif text-2xl text-primary">Información Nutricional</h3>
+<div class="space-y-2 border-t border-outline-variant/30 pt-4">
+<div class="flex justify-between text-sm"><span class="font-medium">Calorías</span><span>120 kcal</span></div>
+<div class="flex justify-between text-sm"><span class="font-medium">Azúcar (Natural)</span><span>14g</span></div>
+<div class="flex justify-between text-sm"><span class="font-medium">Vitamina C</span><span>80% VD</span></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Related Products: Also Might Like -->
+<section class="mt-24 max-w-7xl mx-auto px-6 md:px-12">
+<div class="flex justify-between items-end mb-12">
+<div class="space-y-2">
+<p class="text-xs font-bold text-secondary uppercase tracking-[0.2em]">Siguiente Nivel</p>
+<h2 class="font-serif text-4xl text-primary">También te podría gustar</h2>
+</div>
+<a class="text-primary font-bold border-b-2 border-primary/20 pb-1 hover:border-primary transition-all flex items-center gap-2" href="#">
+                    Ver todos <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Card 1 -->
+<div class="group cursor-pointer">
+<div class="bg-surface-container-highest rounded-xl aspect-[3/4] overflow-hidden mb-6 relative">
+<img alt="Citrus Blast" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Vibrant orange juice bottle with citrus slices around it, overhead artistic view, bright natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAamVaHo615ybdZkkpDpBsMZwlv4CNgTPqBs71djd_tD74TAwkgxmeuhVEwacpxkVw7lglK2-hQKzJ8HGasTewgqIcj_A-UAMlPZwbLyrRyJt3gkxZ20rGr2mOflrJVuqEKVXmwmKrQWD_P2dI5T-fORWXpAHHTcyJQntRRQm0LaoMzl5A8u7aMFAfYmfb2aOI3r-_0lPNEVJEtbt_osC-2UrMdZ-thnfYMjSeEf5up-pX6Y1FFIj5oyYss8VtyqE6wX4gum60Fiixz"/>
+<div class="absolute top-4 left-4 bg-primary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-tighter">Bestseller</div>
+</div>
+<h3 class="font-serif text-xl text-primary mb-1">Citrus Blast</h3>
+<p class="text-secondary font-medium">$7.90</p>
+</div>
+<!-- Card 2 -->
+<div class="group cursor-pointer">
+<div class="bg-surface-container-highest rounded-xl aspect-[3/4] overflow-hidden mb-6 relative">
+<img alt="Golden Glow" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Yellow turmeric and ginger juice bottle on a warm wooden surface with soft shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDS-5aayFEQH7HZHYpWr9a8GXhpbgoRqBNm_8V7YVq7ycjjQ9bkH0ElI_OP4GJWngGuCXYmjBaE_tLqX2VoE7RmV3ZZ0EQ2YY4M6fyYjXcAjgUXQT2-NU-X7rig6jSV8TAZFjnQxO6ZzbGgLbTaRSU8yYNMCqkQa6fuEfPQ15CopcXIOb034U2yJs6aSr8hFWgS98Tx6O0Gjz0YSwhUWhIB2y7ErgEK3ssgCHpNZvWROEs4cGGSNvIvNdLNJ5eoTFG1ZCJsBqZRFo7E"/>
+</div>
+<h3 class="font-serif text-xl text-primary mb-1">Golden Glow</h3>
+<p class="text-secondary font-medium">$8.90</p>
+</div>
+<!-- Card 3 -->
+<div class="group cursor-pointer">
+<div class="bg-surface-container-highest rounded-xl aspect-[3/4] overflow-hidden mb-6 relative">
+<img alt="Berry Boost" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Deep purple berry juice bottle surrounded by fresh raspberries and blueberries, dramatic studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMjxdPYOxslFkOq7lMn2DGcCB2tf-GUDVf3OXtibPPOzFXqrT4yA6v5ZOvOznfRfRsfWe_GX8LEP9QG7K-Z-5V1acSeJg1X-2q1wESkAF3zmStcWVWJBP2rKHLwNGjvdAh6b42XcpiTkPj_ClChI2JC8fX3XzWM9a-2BueEBmfggN2Nt5Iz1wpTfGV2DX4ofNyFJIcozXXTNFsz7xr003KuBQz0vp8fnd1jZsd0yoUYd0hHbGrB31UyEKi2bDjxHzas0X97nOsKUBY"/>
+</div>
+<h3 class="font-serif text-xl text-primary mb-1">Berry Boost</h3>
+<p class="text-secondary font-medium">$9.50</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full rounded-t-[3rem] mt-20 bg-green-900 dark:bg-black">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-12 py-20 max-w-7xl mx-auto">
+<div class="col-span-1 md:col-span-1">
+<h2 class="text-3xl font-serif text-white mb-6">Victor’s Juice Co.</h2>
+<p class="text-orange-50/80 font-light text-sm leading-relaxed">
+                    Embotellando la esencia de la naturaleza desde 2024. Cada jugo es una promesa de pureza y vitalidad.
+                </p>
+</div>
+<div>
+<h4 class="font-serif text-2xl text-orange-50 mb-6">Explore</h4>
+<ul class="space-y-3">
+<li><a class="text-orange-50/80 hover:text-white hover:translate-x-1 transition-all inline-block" href="#">Tienda</a></li>
+<li><a class="text-orange-50/80 hover:text-white hover:translate-x-1 transition-all inline-block" href="#">Nuestra Historia</a></li>
+<li><a class="text-orange-400 underline decoration-2 underline-offset-4" href="#">Jugo Detox</a></li>
+<li><a class="text-orange-50/80 hover:text-white hover:translate-x-1 transition-all inline-block" href="#">Newsletter</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-serif text-2xl text-orange-50 mb-6">Ayuda</h4>
+<ul class="space-y-3">
+<li><a class="text-orange-50/80 hover:text-white hover:translate-x-1 transition-all inline-block" href="#">FAQ</a></li>
+<li><a class="text-orange-50/80 hover:text-white hover:translate-x-1 transition-all inline-block" href="#">Envíos</a></li>
+<li><a class="text-orange-50/80 hover:text-white hover:translate-x-1 transition-all inline-block" href="#">Contacto</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-serif text-2xl text-orange-50 mb-6">Social</h4>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full border border-orange-50/20 flex items-center justify-center text-orange-50 hover:bg-orange-50 hover:text-green-900 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="public">public</span>
+</a>
+<a class="w-10 h-10 rounded-full border border-orange-50/20 flex items-center justify-center text-orange-50 hover:bg-orange-50 hover:text-green-900 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="camera">camera</span>
+</a>
+</div>
+</div>
+</div>
+<div class="border-t border-white/10 max-w-7xl mx-auto px-12 py-8 flex flex-col md:flex-row justify-between items-center gap-4 text-orange-50/60 text-xs tracking-widest uppercase">
+<span>© 2024 Victor’s Juice Co. Freshness Bottled.</span>
+<div class="flex gap-8">
+<a class="hover:text-white transition-colors" href="#">Privacidad</a>
+<a class="hover:text-white transition-colors" href="#">Términos</a>
+</div>
+</div>
+</footer>
+</body></html>

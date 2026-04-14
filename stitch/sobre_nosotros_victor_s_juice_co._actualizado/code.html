@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-container": "#9df197",
+              "on-tertiary": "#d1ffc8",
+              "surface-bright": "#f8f6f2",
+              "inverse-surface": "#0e0e0d",
+              "surface-container-high": "#e4e2de",
+              "on-primary-fixed-variant": "#00691a",
+              "on-surface": "#2e2f2d",
+              "tertiary-fixed-dim": "#90e28a",
+              "surface-variant": "#deddd8",
+              "primary": "#006b1b",
+              "error-container": "#f95630",
+              "secondary-dim": "#764400",
+              "secondary-fixed": "#ffc791",
+              "on-error": "#ffefec",
+              "surface": "#f8f6f2",
+              "on-secondary": "#fff0e5",
+              "secondary-container": "#ffc791",
+              "secondary": "#874e00",
+              "tertiary-dim": "#025d16",
+              "on-primary-container": "#005e17",
+              "outline-variant": "#aeadaa",
+              "on-surface-variant": "#5b5c59",
+              "on-primary-fixed": "#00480f",
+              "inverse-on-surface": "#9e9d99",
+              "surface-tint": "#006b1b",
+              "on-tertiary-container": "#005c15",
+              "primary-container": "#91f78e",
+              "surface-container": "#e9e8e4",
+              "tertiary-fixed": "#9df197",
+              "on-secondary-fixed": "#4f2c00",
+              "surface-dim": "#d5d4d0",
+              "on-error-container": "#520c00",
+              "on-secondary-fixed-variant": "#774400",
+              "on-background": "#2e2f2d",
+              "primary-fixed": "#91f78e",
+              "background": "#f8f6f2",
+              "on-tertiary-fixed-variant": "#12661e",
+              "on-tertiary-fixed": "#00460e",
+              "primary-dim": "#005d16",
+              "on-secondary-container": "#6a3c00",
+              "error": "#b02500",
+              "surface-container-low": "#f2f1ec",
+              "tertiary": "#176a21",
+              "error-dim": "#b92902",
+              "outline": "#777774",
+              "inverse-primary": "#91f78e",
+              "primary-fixed-dim": "#83e881",
+              "surface-container-highest": "#deddd8",
+              "on-primary": "#d1ffc8",
+              "surface-container-lowest": "#ffffff",
+              "secondary-fixed-dim": "#ffb467"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif"],
+              "body": ["Plus Jakarta Sans"],
+              "label": ["Plus Jakarta Sans"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        h1, h2, h3, .font-serif { font-family: 'Noto Serif', serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface antialiased">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#f8f6f2]/70 backdrop-blur-md shadow-sm">
+<div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+<span class="text-2xl font-serif font-bold text-[#006b1b]">Victor’s Juice Co.</span>
+<div class="hidden md:flex space-x-8 items-center">
+<a class="text-[#2e2f2d] hover:text-[#006b1b] hover:scale-105 transition-transform duration-300 ease-out font-medium" href="#">Inicio</a>
+<a class="text-[#2e2f2d] hover:text-[#006b1b] hover:scale-105 transition-transform duration-300 ease-out font-medium" href="#">Tienda</a>
+<a class="text-[#874e00] font-bold border-b-2 border-[#874e00] pb-1 hover:scale-105 transition-transform duration-300 ease-out" href="#">Sobre Nosotros</a>
+<a class="text-[#2e2f2d] hover:text-[#006b1b] hover:scale-105 transition-transform duration-300 ease-out font-medium" href="#">Reseñas</a>
+<a class="text-[#2e2f2d] hover:text-[#006b1b] hover:scale-105 transition-transform duration-300 ease-out font-medium" href="#">Contacto</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-[#006b1b] hover:scale-105 transition-transform">shopping_cart</button>
+<button class="md:hidden material-symbols-outlined">menu</button>
+</div>
+</div>
+</nav>
+<main class="pt-24">
+<!-- Hero Section: Editorial Asymmetric Layout -->
+<section class="relative px-6 md:px-12 py-16 md:py-24 max-w-7xl mx-auto overflow-hidden">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<div class="lg:col-span-5 z-10">
+<span class="inline-block px-4 py-1 bg-primary-container text-on-primary-container rounded-full text-xs font-bold uppercase tracking-widest mb-6">Desde el Huerto</span>
+<h1 class="text-5xl md:text-7xl font-bold leading-tight mb-8">Raíces que nutren tu vida.</h1>
+<p class="text-lg text-on-surface-variant leading-relaxed mb-10 max-w-lg">
+                        En Victor’s Juice Co., creemos que el jugo perfecto no se fabrica, se cultiva. Nuestra historia comienza con una semilla y la promesa de llevar la pureza de la naturaleza directamente a tu mesa.
+                    </p>
+<button class="bg-secondary text-on-secondary px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform duration-300 shadow-lg">Descubre nuestra tienda</button>
+</div>
+<div class="lg:col-span-7 relative">
+<div class="relative rounded-xl overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500">
+<img class="w-full h-[500px] object-cover" data-alt="Close-up of sun-drenched organic orchard with ripe oranges hanging from branches and lush green leaves in soft morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoDRGkkqjKpClPaV7ujV8_FuU1YjgtfhUZ_wTdrO_v0YMKAyls-MHDvKPUBFMu9akcnIzbCLLrUkXEC6LycK409NMKrTl3f6jjxAggO15aGONpVCEGjGppXJvFMCDRB9SblUU5KAUaeICun9y2nHk-WWrI8siP_Q-RJd1Y2Mi6JKQsFR4mDXX4iVXTECzS3P2VFb2nxbqoHT1VmbE575F47pb3zA1y4mNkY1NJ-QntQz3bQxEcs3ASTGTqD2NmZr_UjrkWkIitfDq5"/>
+</div>
+<div class="absolute -bottom-10 -left-10 w-64 h-64 rounded-lg overflow-hidden border-8 border-background shadow-xl hidden md:block -rotate-3 hover:rotate-0 transition-transform duration-500">
+<img class="w-full h-full object-cover" data-alt="Top down view of freshly cut oranges and apples on a rustic wooden table with juice splashing in slow motion" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB21gAeqzzwRwmX50qTv8uOYnXEfiDDLRpCe67w_fig8sIMtX7uprcJuZWe2dkfT5An97-CWMHlsYFh3PFsZVIxyg1Z0bZe2M_Uz_TAH-qqsBmtpuLBoVLRkUFx9Ysd1UXnFRapfNhdbB9B1SBeJCRFtCMfDmuSsKjgyvz5-P8x_8KGC5VPvsJAUCgm191-_K33lGLnu1EKcrSxKeiuDoXwIiVIE2YmrHsEW9Nj0b2BqsUoHMWBCwGUL0wY7WTaKHx6xlv0FL49NreK"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Our Story & Mission: Tonal Depth Strategy -->
+<section class="bg-surface-container-low py-24 mt-12 rounded-t-[3rem] md:rounded-t-[5rem]">
+<div class="max-w-7xl mx-auto px-6 md:px-12">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-start">
+<div class="space-y-8">
+<h2 class="text-4xl font-bold text-primary">Nuestra Historia</h2>
+<div class="prose prose-lg text-on-surface-variant leading-relaxed font-body">
+<p>Todo comenzó con Víctor, un agricultor de tercera generación que se negaba a aceptar que el jugo comercial perdiera el alma en el proceso de pasteurización extrema. En 2014, comenzó a prensar sus propias frutas en un pequeño cobertizo cerca del huerto familiar.</p>
+<p>Lo que empezó como una forma de compartir el excedente de la cosecha con los vecinos se convirtió en un movimiento. Hoy, mantenemos esa misma prensa, pero con un alcance que abraza a toda la comunidad.</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-12 rounded-lg shadow-sm">
+<h2 class="text-4xl font-bold text-secondary mb-8">Misión</h2>
+<p class="text-xl italic font-serif text-on-surface mb-8">"Reconectar a las personas con la vitalidad de la tierra a través de procesos honestos y sabores sin filtros."</p>
+<ul class="space-y-4">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-medium">100% Prensado en frío</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-medium">Cero azúcares añadidos</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-medium">Apoyo a agricultores locales</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Values: Bento Grid -->
+<section class="py-24 max-w-7xl mx-auto px-6 md:px-12">
+<h2 class="text-center text-4xl font-bold mb-16">Lo que nos define</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="bg-surface-container-low p-10 rounded-lg group hover:bg-primary-container transition-colors duration-500">
+<span class="material-symbols-outlined text-5xl text-primary mb-6" style="font-variation-settings: 'FILL' 1;">eco</span>
+<h3 class="text-2xl font-bold mb-4">Calidad</h3>
+<p class="text-on-surface-variant group-hover:text-on-primary-container transition-colors">Seleccionamos cada pieza de fruta a mano. Si no es perfecta, no entra en nuestras botellas.</p>
+</div>
+<div class="bg-surface-container-low p-10 rounded-lg group hover:bg-secondary-container transition-colors duration-500">
+<span class="material-symbols-outlined text-5xl text-secondary mb-6" style="font-variation-settings: 'FILL' 1;">energy_savings_leaf</span>
+<h3 class="text-2xl font-bold mb-4">Frescura</h3>
+<p class="text-on-surface-variant group-hover:text-on-secondary-container transition-colors">Del huerto a la botella en menos de 24 horas. Sin almacenes, sin esperas, solo vida.</p>
+</div>
+<div class="bg-surface-container-low p-10 rounded-lg group hover:bg-tertiary-container transition-colors duration-500">
+<span class="material-symbols-outlined text-5xl text-tertiary-dim mb-6" style="font-variation-settings: 'FILL' 1;">groups</span>
+<h3 class="text-2xl font-bold mb-4">Comunidad</h3>
+<p class="text-on-surface-variant group-hover:text-on-tertiary-container transition-colors">Invertimos el 5% de nuestras ventas en programas de educación agrícola para jóvenes.</p>
+</div>
+</div>
+</section>
+<!-- Team: Human Approach -->
+<!-- CTA Section -->
+<section class="py-24 text-center px-6">
+<div class="max-w-3xl mx-auto">
+<h2 class="text-4xl font-bold mb-8 italic">¿Listo para probar la diferencia?</h2>
+<p class="text-xl text-on-surface-variant mb-10 leading-relaxed">Únete a los miles que ya han cambiado los concentrados por la vida embotellada.</p>
+<div class="flex flex-col sm:flex-row justify-center gap-6">
+<button class="bg-primary text-on-primary px-10 py-5 rounded-full font-bold text-lg hover:scale-105 transition-transform">Ver Productos</button>
+<button class="bg-surface-container-high text-on-surface px-10 py-5 rounded-xl font-bold text-lg hover:scale-105 transition-transform">Contáctanos</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full rounded-t-[3rem] mt-20 bg-[#f2f1ec] dark:bg-[#1c1c1a]">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-12 py-16 max-w-7xl mx-auto">
+<div class="md:col-span-1">
+<span class="text-xl font-serif text-[#006b1b]">Victor’s Juice Co.</span>
+<p class="mt-4 text-[#2e2f2d] dark:text-[#e4e2de] text-sm">El sabor de la naturaleza, sin adornos ni artificios. Directo de nuestro huerto a tu vida.</p>
+</div>
+<div>
+<h4 class="font-bold text-primary mb-6">Navegación</h4>
+<ul class="space-y-4">
+<li><a class="text-[#2e2f2d] hover:text-[#874e00] transition-colors" href="#">FAQ</a></li>
+<li><a class="text-[#2e2f2d] hover:text-[#874e00] transition-colors" href="#">Tienda</a></li>
+<li><a class="text-[#874e00] underline" href="#">Sobre Nosotros</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-primary mb-6">Social</h4>
+<ul class="space-y-4">
+<li><a class="text-[#2e2f2d] hover:text-[#874e00] transition-colors" href="#">Instagram</a></li>
+<li><a class="text-[#2e2f2d] hover:text-[#874e00] transition-colors" href="#">Facebook</a></li>
+<li><a class="text-[#2e2f2d] hover:text-[#874e00] transition-colors" href="#">LinkedIn</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-primary mb-6">Contacto</h4>
+<ul class="space-y-4">
+<li class="text-[#2e2f2d]">info@victorsjuice.co</li>
+<li class="text-[#2e2f2d]">+34 900 123 456</li>
+<li><a class="text-[#2e2f2d] hover:text-[#874e00] transition-colors" href="#">Escríbenos</a></li>
+</ul>
+</div>
+</div>
+<div class="px-12 pb-8 max-w-7xl mx-auto flex justify-between items-center text-xs text-on-surface-variant opacity-60">
+<p>© 2024 Victor’s Juice Co. Organic Orchardist.</p>
+<div class="flex gap-4">
+<span>Privacidad</span>
+<span>Términos</span>
+</div>
+</div>
+</footer>
+</body></html>

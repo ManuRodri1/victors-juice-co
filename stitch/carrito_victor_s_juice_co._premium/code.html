@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-surface": "#1b1c1a",
+                        "outline-variant": "#bfcab9",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f5f3f0",
+                        "secondary": "#964900",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#30312f",
+                        "on-primary-fixed": "#002204",
+                        "surface": "#fbf9f6",
+                        "inverse-on-surface": "#f2f0ed",
+                        "tertiary-fixed-dim": "#ffb0c8",
+                        "surface-container-highest": "#e4e2df",
+                        "on-tertiary-container": "#ffc4d5",
+                        "surface-dim": "#dbdad7",
+                        "outline": "#6f7a6c",
+                        "secondary-fixed-dim": "#ffb786",
+                        "primary-fixed-dim": "#7fdb7c",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "background": "#fbf9f6",
+                        "surface-variant": "#e4e2df",
+                        "tertiary-container": "#9e345f",
+                        "tertiary-fixed": "#ffd9e2",
+                        "on-secondary-fixed": "#311300",
+                        "on-secondary-fixed-variant": "#723600",
+                        "on-tertiary-fixed-variant": "#831e4a",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed-variant": "#005313",
+                        "surface-tint": "#066e1e",
+                        "secondary-fixed": "#ffdcc6",
+                        "on-tertiary-fixed": "#3e001d",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#9bf896",
+                        "primary": "#005012",
+                        "error": "#ba1a1a",
+                        "inverse-primary": "#7fdb7c",
+                        "surface-container-high": "#eae8e5",
+                        "surface-bright": "#fbf9f6",
+                        "on-surface-variant": "#3f493d",
+                        "surface-container": "#efeeeb",
+                        "primary-container": "#006b1b",
+                        "secondary-container": "#fc820c",
+                        "on-background": "#1b1c1a",
+                        "on-secondary-container": "#5e2c00",
+                        "on-primary-container": "#8de989",
+                        "tertiary": "#7f1b47",
+                        "on-error": "#ffffff"
+                    },
+                    fontFamily: {
+                        "headline": ["Noto Serif"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #fcfaf7;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .glass-nav {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #bfcab9;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="text-on-surface antialiased">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl shadow-sm shadow-green-900/5">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-7xl mx-auto">
+<div class="flex items-center gap-2">
+<span class="text-2xl font-serif italic text-green-900 dark:text-green-50">Victor’s Juice Co.</span>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-zinc-600 dark:text-zinc-400 hover:text-green-800 transition-colors text-sm font-medium" href="#">Inicio</a>
+<a class="text-zinc-600 dark:text-zinc-400 hover:text-green-800 transition-colors text-sm font-medium" href="#">Tienda</a>
+<a class="text-zinc-600 dark:text-zinc-400 hover:text-green-800 transition-colors text-sm font-medium" href="#">Sobre Nosotros</a>
+<a class="text-zinc-600 dark:text-zinc-400 hover:text-green-800 transition-colors text-sm font-medium" href="#">Reseñas</a>
+<a class="text-zinc-600 dark:text-zinc-400 hover:text-green-800 transition-colors text-sm font-medium" href="#">Contacto</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="relative p-2 text-green-900">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="absolute top-0 right-0 w-4 h-4 bg-secondary-container text-on-secondary-container text-[10px] flex items-center justify-center rounded-full font-bold">3</span>
+</button>
+</div>
+</div>
+</header>
+<main class="pt-28 pb-20 px-4 max-w-7xl mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- Left Column: Checkout Details -->
+<div class="lg:col-span-7 space-y-12">
+<!-- Page Title -->
+<section>
+<h1 class="font-headline text-4xl tracking-tight text-primary mb-2">Tu Carrito Natural</h1>
+<p class="text-on-surface-variant font-body">Revisa tus productos y completa los detalles de entrega.</p>
+</section>
+<!-- Important Notice -->
+<div class="bg-primary-container/10 p-6 rounded-lg border-l-4 border-primary flex gap-4 items-start">
+<span class="material-symbols-outlined text-primary" data-icon="info" style="font-variation-settings: 'FILL' 1;">info</span>
+<p class="text-primary font-medium text-sm leading-relaxed">
+                        Todos nuestros jugos se preparan frescos según disponibilidad. Confirmaremos tu pedido por WhatsApp después de realizarlo.
+                    </p>
+</div>
+<!-- Customer Info Section -->
+<section class="space-y-6">
+<div class="flex items-center gap-3">
+<span class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-sm">1</span>
+<h2 class="font-headline text-2xl text-on-surface">Información del Cliente</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="block text-xs font-bold uppercase tracking-wider text-outline px-1">Nombre completo</label>
+<input class="w-full bg-surface-container-low border-none rounded-xl py-4 px-6 focus:ring-2 focus:ring-primary/20 transition-all outline-none text-on-surface" placeholder="Ej. Ana Victoria García" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="block text-xs font-bold uppercase tracking-wider text-outline px-1">Número de WhatsApp</label>
+<div class="relative">
+<span class="absolute left-6 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">+52</span>
+<input class="w-full bg-surface-container-low border-none rounded-xl py-4 pl-14 pr-6 focus:ring-2 focus:ring-primary/20 transition-all outline-none text-on-surface" placeholder="55 1234 5678" type="tel"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Delivery Details -->
+<section class="space-y-6">
+<div class="flex items-center gap-3">
+<span class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-sm">2</span>
+<h2 class="font-headline text-2xl text-on-surface">Método de Entrega</h2>
+</div>
+<div class="flex p-1 bg-surface-container-high rounded-full w-fit">
+<button class="px-8 py-2.5 rounded-full text-sm font-semibold transition-all bg-surface-container-lowest shadow-sm text-primary">
+                            Entrega a domicilio
+                        </button>
+<button class="px-8 py-2.5 rounded-full text-sm font-medium transition-all text-on-surface-variant hover:text-primary">
+                            Recoger en tienda
+                        </button>
+</div>
+<div class="space-y-6 animate-fade-in">
+<div class="space-y-2">
+<label class="block text-xs font-bold uppercase tracking-wider text-outline px-1">Dirección de entrega</label>
+<div class="relative">
+<span class="absolute left-6 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline" data-icon="location_on">location_on</span>
+<input class="w-full bg-surface-container-low border-none rounded-xl py-4 pl-14 pr-6 focus:ring-2 focus:ring-primary/20 transition-all outline-none text-on-surface" placeholder="Calle, número, colonia y ciudad" type="text"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="block text-xs font-bold uppercase tracking-wider text-outline px-1">¿Cuándo lo quieres?</label>
+<div class="grid grid-cols-3 gap-3">
+<button class="py-3 px-4 rounded-xl border-2 border-primary bg-primary/5 text-primary font-bold text-sm text-center">Hoy</button>
+<button class="py-3 px-4 rounded-xl border-2 border-transparent bg-surface-container-low text-on-surface-variant font-medium text-sm text-center hover:bg-surface-container-highest transition-colors">Mañana</button>
+<button class="py-3 px-4 rounded-xl border-2 border-transparent bg-surface-container-low text-on-surface-variant font-medium text-sm text-center hover:bg-surface-container-highest transition-colors">Otra fecha</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Order Summary & Cart Items -->
+<div class="lg:col-span-5">
+<div class="sticky top-28 space-y-6">
+<!-- Cart Items Card -->
+<div class="bg-surface-container-lowest rounded-xl p-8 shadow-sm shadow-on-surface/5">
+<h3 class="font-headline text-xl text-on-surface mb-6">Tu Pedido</h3>
+<div class="space-y-6 custom-scrollbar max-h-[400px] overflow-y-auto pr-2">
+<!-- Product 1 -->
+<div class="flex gap-4 group">
+<div class="w-20 h-20 rounded-lg overflow-hidden bg-surface-container-low flex-shrink-0">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="vibrant orange juice in a clear glass bottle with fresh orange slices and green mint leaves in background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQTfDHvkle-W4ruBlhHRcu1rpEa6kXe6Ma78PTkhFuiUjGrqciBCIBM2CsrxC4uKP5YVWkf8217-e76TkB_EqQ9cVF3WHx-ripcdb9U1L8jMM5uZobPP3NfIlCTrcwbbng7cglVKzT96vCT7csFPU3ZvYMBXBnbY30st5TcHcIVdmp-Mlb25OcWF9gCpSaZU3yrSTja5rsTZcBp6CUXO2eHVoujlnPsVKLT31xe_I-VpmCwt2pkc1Zo6rYSn_CZ9j2ow6jVRCbSNd_"/>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-bold text-on-surface">Amanecer Cítrico</h4>
+<span class="inline-block bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-tighter mt-1">Disponible hoy</span>
+</div>
+<p class="font-bold text-primary">$85.00</p>
+</div>
+<div class="flex items-center justify-between mt-3">
+<div class="flex items-center bg-surface-container-low rounded-full px-2 py-1">
+<button class="w-6 h-6 flex items-center justify-center text-outline hover:text-primary"><span class="material-symbols-outlined text-sm" data-icon="remove">remove</span></button>
+<span class="px-3 text-sm font-bold">2</span>
+<button class="w-6 h-6 flex items-center justify-center text-outline hover:text-primary"><span class="material-symbols-outlined text-sm" data-icon="add">add</span></button>
+</div>
+<button class="text-outline hover:text-error transition-colors"><span class="material-symbols-outlined text-xl" data-icon="delete">delete</span></button>
+</div>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="flex gap-4 group">
+<div class="w-20 h-20 rounded-lg overflow-hidden bg-surface-container-low flex-shrink-0">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="deep green cold pressed juice bottle with kale leaves and green apple on a marble surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHvcLMMob1o7gKrlNXIo2pQms5GDZsB0kycz5O8jaWu5OZP0b5lvcuKqyad3gu_wsr-Vd_aRqoo-N93wFEABSuLsAPu-f3stgm4i_7a2mV_n5K7k3vmri5GJc0fbiR5ev2Zw_eBTe_ad7RY6jJbvOgM82zPqI8lODtH21KmO-9LJdsUrTix2uG5CNpvhP4t_DTJGwqdXpfyO83i9RblEOQ1qzHIrWpCIM8bnoMxvToPB6qj0xZvLwNwQOKtHQATlsu0XeF1zjV1MMe"/>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-bold text-on-surface">Poder Verde</h4>
+<span class="inline-block bg-orange-100 text-orange-700 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-tighter mt-1">Preparado al momento</span>
+</div>
+<p class="font-bold text-primary">$95.00</p>
+</div>
+<div class="flex items-center justify-between mt-3">
+<div class="flex items-center bg-surface-container-low rounded-full px-2 py-1">
+<button class="w-6 h-6 flex items-center justify-center text-outline hover:text-primary"><span class="material-symbols-outlined text-sm" data-icon="remove">remove</span></button>
+<span class="px-3 text-sm font-bold">1</span>
+<button class="w-6 h-6 flex items-center justify-center text-outline hover:text-primary"><span class="material-symbols-outlined text-sm" data-icon="add">add</span></button>
+</div>
+<button class="text-outline hover:text-error transition-colors"><span class="material-symbols-outlined text-xl" data-icon="delete">delete</span></button>
+</div>
+</div>
+</div>
+</div>
+<!-- Divider -->
+<div class="h-px bg-outline-variant/20 my-8"></div>
+<!-- Summary Values -->
+<div class="space-y-3 mb-8">
+<div class="flex justify-between text-on-surface-variant">
+<span class="text-sm">Subtotal</span>
+<span class="font-medium">$265.00</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span class="text-sm">Envío estimado</span>
+<span class="font-medium">$45.00</span>
+</div>
+<div class="flex justify-between items-end pt-2">
+<span class="font-headline text-lg text-on-surface">Total Estimado</span>
+<span class="font-headline text-2xl text-primary font-bold">$310.00</span>
+</div>
+</div>
+<!-- Main CTA -->
+<button class="w-full bg-secondary-container text-on-secondary-container py-5 rounded-full font-bold text-lg shadow-lg shadow-secondary-container/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex flex-col items-center justify-center gap-1 group">
+<span>Realizar pedido</span>
+<span class="text-[10px] font-medium opacity-80 max-w-[80%] text-center leading-tight">Te contactaremos vía WhatsApp para confirmar disponibilidad y entrega.</span>
+</button>
+<div class="mt-6 flex items-center justify-center gap-2 text-outline">
+<span class="material-symbols-outlined text-sm" data-icon="lock" style="font-variation-settings: 'FILL' 1;">lock</span>
+<span class="text-[11px] font-bold uppercase tracking-widest">Pago seguro vía WhatsApp</span>
+</div>
+</div>
+<!-- Trust Indicators -->
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low/50 p-4 rounded-xl flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="eco">eco</span>
+<span class="text-xs font-bold leading-tight">100% Orgánico</span>
+</div>
+<div class="bg-surface-container-low/50 p-4 rounded-xl flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="local_shipping">local_shipping</span>
+<span class="text-xs font-bold leading-tight">Entrega Local</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full rounded-t-[3rem] mt-20 bg-green-900 dark:bg-black text-orange-50 dark:text-orange-200">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-12 py-20 max-w-7xl mx-auto">
+<div class="col-span-1 md:col-span-1">
+<span class="text-3xl font-serif text-white block mb-6">Victor’s Juice Co.</span>
+<p class="font-body text-sm opacity-80 leading-relaxed">Prensado en frío, servido con alma. La frescura del huerto directamente a tu puerta.</p>
+</div>
+<div class="space-y-4">
+<h4 class="font-headline text-xl">Explora</h4>
+<nav class="flex flex-col gap-2">
+<a class="text-orange-50/80 hover:text-white hover:translate-x-1 transition-all" href="#">Store</a>
+<a class="text-orange-50/80 hover:text-white hover:translate-x-1 transition-all" href="#">About</a>
+<a class="text-orange-50/80 hover:text-white hover:translate-x-1 transition-all" href="#">Instagram</a>
+</nav>
+</div>
+<div class="space-y-4">
+<h4 class="font-headline text-xl">Soporte</h4>
+<nav class="flex flex-col gap-2">
+<a class="text-orange-50/80 hover:text-white hover:translate-x-1 transition-all" href="#">FAQ</a>
+<a class="text-orange-50/80 hover:text-white hover:translate-x-1 transition-all" href="#">Newsletter</a>
+<a class="text-orange-50/80 hover:text-white hover:translate-x-1 transition-all" href="#">Privacidad</a>
+</nav>
+</div>
+<div class="space-y-6">
+<h4 class="font-headline text-xl">Newsletter</h4>
+<div class="relative">
+<input class="w-full bg-white/10 border-none rounded-full py-3 px-6 placeholder:text-orange-50/40 text-sm outline-none focus:ring-2 focus:ring-orange-500/50" placeholder="Tu email" type="email"/>
+<button class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<p class="text-[10px] opacity-60">Recibe recetas y ofertas exclusivas cada semana.</p>
+</div>
+</div>
+<div class="border-t border-white/10 py-8 px-12 max-w-7xl mx-auto text-center">
+<p class="text-xs opacity-60">© 2024 Victor’s Juice Co. Freshness Bottled.</p>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-surface": "#1b1c1a",
+              "outline-variant": "#bfcab9",
+              "surface-container-lowest": "#ffffff",
+              "surface-container-low": "#f5f3f0",
+              "secondary": "#964900",
+              "error-container": "#ffdad6",
+              "inverse-surface": "#30312f",
+              "on-primary-fixed": "#002204",
+              "surface": "#fbf9f6",
+              "inverse-on-surface": "#f2f0ed",
+              "tertiary-fixed-dim": "#ffb0c8",
+              "surface-container-highest": "#e4e2df",
+              "on-tertiary-container": "#ffc4d5",
+              "surface-dim": "#dbdad7",
+              "outline": "#6f7a6c",
+              "secondary-fixed-dim": "#ffb786",
+              "primary-fixed-dim": "#7fdb7c",
+              "on-error-container": "#93000a",
+              "on-tertiary": "#ffffff",
+              "background": "#fbf9f6",
+              "surface-variant": "#e4e2df",
+              "tertiary-container": "#9e345f",
+              "tertiary-fixed": "#ffd9e2",
+              "on-secondary-fixed": "#311300",
+              "on-secondary-fixed-variant": "#723600",
+              "on-tertiary-fixed-variant": "#831e4a",
+              "on-primary": "#ffffff",
+              "on-primary-fixed-variant": "#005313",
+              "surface-tint": "#066e1e",
+              "secondary-fixed": "#ffdcc6",
+              "on-tertiary-fixed": "#3e001d",
+              "on-secondary": "#ffffff",
+              "primary-fixed": "#9bf896",
+              "primary": "#005012",
+              "error": "#ba1a1a",
+              "inverse-primary": "#7fdb7c",
+              "surface-container-high": "#eae8e5",
+              "surface-bright": "#fbf9f6",
+              "on-surface-variant": "#3f493d",
+              "surface-container": "#efeeeb",
+              "primary-container": "#006b1b",
+              "secondary-container": "#fc820c",
+              "on-background": "#1b1c1a",
+              "on-secondary-container": "#5e2c00",
+              "on-primary-container": "#8de989",
+              "tertiary": "#7f1b47",
+              "on-error": "#ffffff"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif"],
+              "body": ["Plus Jakarta Sans"],
+              "label": ["Plus Jakarta Sans"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background-color: #fbf9f6;
+      }
+      .serif-display {
+        font-family: 'Noto Serif', serif;
+      }
+      .glass-nav {
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+      .product-card-hover:hover .add-to-cart-btn {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      .product-card-hover:hover img {
+        transform: scale(1.05);
+      }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl shadow-sm shadow-green-900/5">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-7xl mx-auto">
+<div class="flex items-center gap-2">
+<span class="text-2xl font-serif italic text-green-900 dark:text-green-50">Victor’s Juice Co.</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-zinc-600 dark:text-zinc-400 hover:text-green-800 transition-colors text-sm font-medium" href="#">Inicio</a>
+<a class="text-green-700 dark:text-green-400 font-semibold border-b-2 border-orange-500 pb-1 text-sm" href="#">Tienda</a>
+<a class="text-zinc-600 dark:text-zinc-400 hover:text-green-800 transition-colors text-sm font-medium" href="#">Sobre Nosotros</a>
+<a class="text-zinc-600 dark:text-zinc-400 hover:text-green-800 transition-colors text-sm font-medium" href="#">Reseñas</a>
+<a class="text-zinc-600 dark:text-zinc-400 hover:text-green-800 transition-colors text-sm font-medium" href="#">Contacto</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-green-900 hover:text-orange-600 transition-all duration-300">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+</button>
+<button class="md:hidden p-2 text-green-900">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="pt-32 pb-20 px-6 max-w-7xl mx-auto">
+<!-- Header Section -->
+<header class="mb-16 text-center md:text-left">
+<h1 class="serif-display text-5xl md:text-7xl font-bold tracking-tight text-primary mb-4">Nuestra Tienda</h1>
+<p class="text-zinc-600 max-w-2xl text-lg font-light leading-relaxed">Explora nuestra selección de jugos prensados en frío, elaborados diariamente con los ingredientes más frescos del huerto para nutrir tu cuerpo y alma.</p>
+</header>
+<!-- Filter Bar -->
+<div class="flex flex-wrap items-center gap-4 mb-12 overflow-x-auto pb-4 no-scrollbar">
+<button class="px-6 py-2.5 rounded-full bg-primary text-white font-medium shadow-md shadow-primary/20 transition-all">Todos</button>
+<button class="px-6 py-2.5 rounded-full bg-surface-container-low text-on-surface hover:bg-surface-container-highest transition-all font-medium">Jugos naturales</button>
+<button class="px-6 py-2.5 rounded-full bg-surface-container-low text-on-surface hover:bg-surface-container-highest transition-all font-medium">Detox</button>
+<button class="px-6 py-2.5 rounded-full bg-surface-container-low text-on-surface hover:bg-surface-container-highest transition-all font-medium">Energía</button>
+<button class="px-6 py-2.5 rounded-full bg-surface-container-low text-on-surface hover:bg-surface-container-highest transition-all font-medium">Shots funcionales</button>
+<button class="px-6 py-2.5 rounded-full bg-surface-container-low text-on-surface hover:bg-surface-container-highest transition-all font-medium">Personalizados</button>
+<div class="ml-auto hidden lg:flex items-center gap-2 text-zinc-400 text-sm">
+<span class="material-symbols-outlined text-sm" data-icon="sort">sort</span>
+<span>Ordenar por: Popularidad</span>
+</div>
+</div>
+<!-- Product Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+<!-- Product Card 1 -->
+<div class="group relative flex flex-col product-card-hover">
+<div class="relative aspect-[3/4] overflow-hidden rounded-xl bg-surface-container-low mb-4 transition-all duration-500 shadow-sm shadow-green-900/5">
+<img class="w-full h-full object-cover transition-transform duration-700 ease-out" data-alt="Premium cold-pressed green juice bottle with fresh kale, cucumber, and apple slices on a bright organic background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAx2hdOpLlJUcv7Fs7vQxFkCfMjVGYlmUqI3WdJIbeePCoPQP1Yj4TUpq_u4GDSNaD-PKjPBemT9CmY7Gzbp8Cd08bQl5SxAbAORtB-lFBSPdvBHrJa1eWv5g1Dh0lv-XUyl_b3I0yOxC6YiLHskcMVnDihqoB_xInHzh8Kt0ygkgF6FqKHjg0DXCYE9d_6bvG6SBJQLKWXP9K5Q0h_cpHwkmtCUCj97chWz7xNFfQSivCIsTydXMLhF3JZ8C48FUuGIW86NpNhPaQI"/>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 bg-primary-container/90 backdrop-blur-md text-on-primary-container text-[10px] font-bold uppercase tracking-widest rounded-full">Disponible hoy</span>
+</div>
+<div class="absolute inset-x-0 bottom-0 p-6 translate-y-4 opacity-0 transition-all duration-300 add-to-cart-btn group-hover:translate-y-0 group-hover:opacity-100">
+<button class="w-full py-4 bg-secondary-container text-on-secondary-container font-bold rounded-full shadow-lg hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg" data-icon="add_shopping_cart">add_shopping_cart</span>
+                            Agregar al Carrito
+                        </button>
+</div>
+</div>
+<div class="px-1">
+<h3 class="serif-display text-xl font-bold text-on-surface mb-1">Verde Vital</h3>
+<p class="text-zinc-500 text-sm mb-3">Espinaca, Pepino, Manzana Verde, Limón.</p>
+<span class="text-primary font-bold text-lg">$8.50</span>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group relative flex flex-col product-card-hover">
+<div class="relative aspect-[3/4] overflow-hidden rounded-xl bg-surface-container-low mb-4 transition-all duration-500 shadow-sm shadow-green-900/5">
+<img class="w-full h-full object-cover transition-transform duration-700 ease-out" data-alt="Vibrant orange citrus juice bottle surrounded by fresh orange segments and ginger root on a clean sunlit surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOocpw-Z3UMAjfOhmWH-GbP0t-RGsg9_ts1_ALtA9PV2uyqrJJSCejGSaiInDqHhxx3hOzKUOtjURbxlkuxCm8iZug7o4mCppI6zrDMBYI1mV6qsQkvXRSoXsl28maTzq9beSB4-wA0HWuAW3vEk0Vw01gb-RM4fgxc1ATdgB8wEWYRmfnwh01T5rCXSVIbf9W5byu9aL9uvAhpozUgBBVo4TDidcpcB8f9Je6OVQbCLTNL7YlpqnZ5kcLvB2nTbJh3dxvEtPKgP0C"/>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 bg-secondary/90 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-widest rounded-full">Limitado</span>
+</div>
+<div class="absolute inset-x-0 bottom-0 p-6 translate-y-4 opacity-0 transition-all duration-300 add-to-cart-btn group-hover:translate-y-0 group-hover:opacity-100">
+<button class="w-full py-4 bg-secondary-container text-on-secondary-container font-bold rounded-full shadow-lg hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg" data-icon="add_shopping_cart">add_shopping_cart</span>
+                            Agregar al Carrito
+                        </button>
+</div>
+</div>
+<div class="px-1">
+<h3 class="serif-display text-xl font-bold text-on-surface mb-1">Cítrico Amanecer</h3>
+<p class="text-zinc-500 text-sm mb-3">Naranja, Jengibre, Cúrcuma, Zanahoria.</p>
+<span class="text-primary font-bold text-lg">$9.00</span>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group relative flex flex-col product-card-hover">
+<div class="relative aspect-[3/4] overflow-hidden rounded-xl bg-surface-container-low mb-4 transition-all duration-500 shadow-sm shadow-green-900/5">
+<img class="w-full h-full object-cover transition-transform duration-700 ease-out" data-alt="Deep red beet and berry juice bottle with scattered blueberries and sliced beets on a textured light stone background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmkVRhBJzOTCureCwsMupGnI4G6hsOzvS95d-VSzACv-8tk-yAgPTq2IZ-ay-GRq4CzyWXcqxQeMiW-RNpCx1azBTaO5u8xRduZz2c8kq46SNy7gPjj91LW532bQaYR7SQ3mFKPSnTR67VHJcToe7T9Fu-f8fIx0Xu5b9LLyBN-sLr73lxWQit1H42o6bA8-Yw1WUzgf6VLbIA9NaK52mzTijC8Hj2iJo0Fn9_1BT9XQOdXAfHS1m64yl7CVa4jd8He5YOtLbHJSet"/>
+<div class="absolute inset-x-0 bottom-0 p-6 translate-y-4 opacity-0 transition-all duration-300 add-to-cart-btn group-hover:translate-y-0 group-hover:opacity-100">
+<button class="w-full py-4 bg-secondary-container text-on-secondary-container font-bold rounded-full shadow-lg hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg" data-icon="add_shopping_cart">add_shopping_cart</span>
+                            Agregar al Carrito
+                        </button>
+</div>
+</div>
+<div class="px-1">
+<h3 class="serif-display text-xl font-bold text-on-surface mb-1">Remolacha Detox</h3>
+<p class="text-zinc-500 text-sm mb-3">Remolacha, Arándanos, Limón, Menta.</p>
+<span class="text-primary font-bold text-lg">$8.75</span>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="group relative flex flex-col product-card-hover">
+<div class="relative aspect-[3/4] overflow-hidden rounded-xl bg-surface-container-low mb-4 transition-all duration-500 shadow-sm shadow-green-900/5">
+<img class="w-full h-full object-cover transition-transform duration-700 ease-out" data-alt="Small functional ginger and lemon shots bottles neatly arranged on a minimal white surface with soft shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsb8ZGhzb5irOlTQk4xLJ_60oKBQx-a7BK6DEtKPmlEvCnAlHdrPDP_TEpm0agcJKa0rzx657r4zIo5qgbiuLgzWFS3CHb4gsRmmXA6RQA0pGvEZg4q1cig1Hkp5rXVQ2d3GSnoEEZM2y_LdI82tOj3lrjAqSHZG653-5tlSUy_-UO7S_CqbS-MALDE7zmYWDVHJWbMRn1SXsy2ddgmYaHLKU-DMM7Mh9mSF7NAfIipNZvZSIVdm4qEs_vJRkfzcGZb46ItTOfUddU"/>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 bg-primary-container/90 backdrop-blur-md text-on-primary-container text-[10px] font-bold uppercase tracking-widest rounded-full">Bestseller</span>
+</div>
+<div class="absolute inset-x-0 bottom-0 p-6 translate-y-4 opacity-0 transition-all duration-300 add-to-cart-btn group-hover:translate-y-0 group-hover:opacity-100">
+<button class="w-full py-4 bg-secondary-container text-on-secondary-container font-bold rounded-full shadow-lg hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg" data-icon="add_shopping_cart">add_shopping_cart</span>
+                            Agregar al Carrito
+                        </button>
+</div>
+</div>
+<div class="px-1">
+<h3 class="serif-display text-xl font-bold text-on-surface mb-1">Shot Inmunidad</h3>
+<p class="text-zinc-500 text-sm mb-3">Jengibre puro, Limón, Pimienta de Cayena.</p>
+<span class="text-primary font-bold text-lg">$4.50</span>
+</div>
+</div>
+<!-- Product Card 5 -->
+<div class="group relative flex flex-col product-card-hover">
+<div class="relative aspect-[3/4] overflow-hidden rounded-xl bg-surface-container-low mb-4 transition-all duration-500 shadow-sm shadow-green-900/5">
+<img class="w-full h-full object-cover transition-transform duration-700 ease-out" data-alt="Golden wellness juice with pineapple and turmeric in a clear bottle, soft atmospheric lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5y_kRokRELn_kb0bdEcMfY3s5KLCHb12-MPS5SZPP_NH4rl8Af6Aj659Sh2b7JUHuUJxDZ6aS0oycsxHmL9JUycnA2F5ZFiEkv7IyO4zPhITGoidXXPPSyv7a-auT_S76b9j9Eab5C5yeh75-c01lZj-jKaUBzfD21i7Tvg4dSVGolS2BbfJT8g6Gc-iphiTJHhJLGcvaUqB7Ca2TXMlTUH4rb-gfuSyx2HP56gm3d1R1jYXW5hdoJa2j8mhyRwMDh9GVDBlHn0ok"/>
+<div class="absolute inset-x-0 bottom-0 p-6 translate-y-4 opacity-0 transition-all duration-300 add-to-cart-btn group-hover:translate-y-0 group-hover:opacity-100">
+<button class="w-full py-4 bg-secondary-container text-on-secondary-container font-bold rounded-full shadow-lg hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg" data-icon="add_shopping_cart">add_shopping_cart</span>
+                            Agregar al Carrito
+                        </button>
+</div>
+</div>
+<div class="px-1">
+<h3 class="serif-display text-xl font-bold text-on-surface mb-1">Piña Zen</h3>
+<p class="text-zinc-500 text-sm mb-3">Piña, Agua de Coco, Albahaca, Lima.</p>
+<span class="text-primary font-bold text-lg">$8.25</span>
+</div>
+</div>
+<!-- Product Card 6 -->
+<div class="group relative flex flex-col product-card-hover">
+<div class="relative aspect-[3/4] overflow-hidden rounded-xl bg-surface-container-low mb-4 transition-all duration-500 shadow-sm shadow-green-900/5">
+<img class="w-full h-full object-cover transition-transform duration-700 ease-out" data-alt="Dark red pomegranate juice with scattered pomegranate seeds on a dark moody background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGPGEKrk6SlCdrXe4_APMda3t8OYbBJXOOEZOHMQbk95iEKJ9dChYjXjlwOFq9AKRuh47NdX4kNr4Xtnqjza5WOaRN6wsClLME8wJpkPAfnP4Gpi0dD7qwfaYK0jLsKdq_wQ7qxIq1JrzeOU-VPo-ESMG6s7JEMBYIvYaVbK8XOe8oywsOKg1ReH_1VYU_DZB_wfV75SrGU62OO8liuP0w6PRoe4-lqLnsNQvYHlehb1UTdhFrXqZCBOmz0Opqg0d4XEoYMzhIVGTw"/>
+<div class="absolute inset-x-0 bottom-0 p-6 translate-y-4 opacity-0 transition-all duration-300 add-to-cart-btn group-hover:translate-y-0 group-hover:opacity-100">
+<button class="w-full py-4 bg-secondary-container text-on-secondary-container font-bold rounded-full shadow-lg hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg" data-icon="add_shopping_cart">add_shopping_cart</span>
+                            Agregar al Carrito
+                        </button>
+</div>
+</div>
+<div class="px-1">
+<h3 class="serif-display text-xl font-bold text-on-surface mb-1">Granada Royale</h3>
+<p class="text-zinc-500 text-sm mb-3">Granada, Manzana Roja, Chía.</p>
+<span class="text-primary font-bold text-lg">$9.50</span>
+</div>
+</div>
+<!-- Product Card 7 -->
+<div class="group relative flex flex-col product-card-hover">
+<div class="relative aspect-[3/4] overflow-hidden rounded-xl bg-surface-container-low mb-4 transition-all duration-500 shadow-sm shadow-green-900/5">
+<img class="w-full h-full object-cover transition-transform duration-700 ease-out" data-alt="Clear juice with cucumber and mint leaves floating inside, condensation on the bottle, ultra-fresh aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBD_cOa4NCcuDFdFoB_701IZ9JnZAdtwJAqZlC6xkowXXYcSq5BHnWtfNxoP5f7Z-4WgUoXVZdrnKN0YC2BIIPLz7Ll4olsDmMGK3VvDRSR5_WHReJfNYDJwZ8vCE4cEwO9ctvGkCudLoQtcww4Opqq-OLj1XoLHwysDWVz6OoLj4fNdDR6CmsI4LpjAQ6oEhMffkoWeATM4pHxo7EYzZb2Pe-X5fAxcbcRM6nxquSP2OngItg0x8Bf54O3QFoKwbnycT9h-5OZdcaI"/>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 bg-primary-container/90 backdrop-blur-md text-on-primary-container text-[10px] font-bold uppercase tracking-widest rounded-full">Recién Hecho</span>
+</div>
+<div class="absolute inset-x-0 bottom-0 p-6 translate-y-4 opacity-0 transition-all duration-300 add-to-cart-btn group-hover:translate-y-0 group-hover:opacity-100">
+<button class="w-full py-4 bg-secondary-container text-on-secondary-container font-bold rounded-full shadow-lg hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg" data-icon="add_shopping_cart">add_shopping_cart</span>
+                            Agregar al Carrito
+                        </button>
+</div>
+</div>
+<div class="px-1">
+<h3 class="serif-display text-xl font-bold text-on-surface mb-1">Hidratación Menta</h3>
+<p class="text-zinc-500 text-sm mb-3">Pepino, Menta, Aloe Vera, Limón.</p>
+<span class="text-primary font-bold text-lg">$7.90</span>
+</div>
+</div>
+<!-- Product Card 8 -->
+<div class="group relative flex flex-col product-card-hover">
+<div class="relative aspect-[3/4] overflow-hidden rounded-xl bg-surface-container-low mb-4 transition-all duration-500 shadow-sm shadow-green-900/5">
+<img class="w-full h-full object-cover transition-transform duration-700 ease-out" data-alt="Spicy ginger and honey wellness elixir in a small premium glass bottle, soft morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUw1--jJEBfJnnB0BH-Skf4zbZdqaWKRBC3JpisT0cYzSwZINInxr6zlQ2aMACADyzRZlbYYsaSSLE6_6doVdSxhJeoLfNEzoQITjAslMjvmePiFSZaWNUiO6iJJSdqOlk7P0ht2TNS6dezhgpn4G2UD1_YdcPksDTpG7YrJh8uX29SPCN_dn4VoybGSF3Ilo0lNeYXFNphWebf31xH9x5PhxriWX0TKSHaWhauBIhoIhNWSl_DN8hsflyVHXMF6W7KO7WYqNXJDBQ"/>
+<div class="absolute inset-x-0 bottom-0 p-6 translate-y-4 opacity-0 transition-all duration-300 add-to-cart-btn group-hover:translate-y-0 group-hover:opacity-100">
+<button class="w-full py-4 bg-secondary-container text-on-secondary-container font-bold rounded-full shadow-lg hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg" data-icon="add_shopping_cart">add_shopping_cart</span>
+                            Agregar al Carrito
+                        </button>
+</div>
+</div>
+<div class="px-1">
+<h3 class="serif-display text-xl font-bold text-on-surface mb-1">Elixir Energía</h3>
+<p class="text-zinc-500 text-sm mb-3">Guaraná, Ginseng, Miel, Jengibre.</p>
+<span class="text-primary font-bold text-lg">$5.50</span>
+</div>
+</div>
+</div>
+<!-- Pagination / Load More -->
+<div class="mt-20 flex justify-center">
+<button class="px-12 py-4 rounded-full border border-primary text-primary font-bold hover:bg-primary hover:text-white transition-all duration-300">
+                Ver Más Productos
+            </button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full rounded-t-[3rem] mt-20 bg-green-900 dark:bg-black">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-12 py-20 max-w-7xl mx-auto">
+<div class="col-span-1 md:col-span-1">
+<span class="text-3xl font-serif text-white mb-6 block">Victor’s Juice Co.</span>
+<p class="text-orange-50/80 font-light leading-relaxed mb-6">Llevando la frescura del huerto directamente a tu puerta. Sostenible, orgánico y lleno de vida.</p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full border border-orange-50/20 flex items-center justify-center text-white hover:bg-orange-50/10 transition-all" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="instagram">retweet</span>
+</a>
+<a class="w-10 h-10 rounded-full border border-orange-50/20 flex items-center justify-center text-white hover:bg-orange-50/10 transition-all" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="facebook">social_leaderboard</span>
+</a>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="Noto Serif text-2xl text-orange-50 mb-2">Explora</h4>
+<a class="text-orange-50/80 hover:text-white transition-colors hover:translate-x-1 transition-transform duration-200" href="#">Tienda</a>
+<a class="text-orange-50/80 hover:text-white transition-colors hover:translate-x-1 transition-transform duration-200" href="#">Sobre Nosotros</a>
+<a class="text-orange-50/80 hover:text-white transition-colors hover:translate-x-1 transition-transform duration-200" href="#">Planes Detox</a>
+<a class="text-orange-50/80 hover:text-white transition-colors hover:translate-x-1 transition-transform duration-200" href="#">Suscripciones</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="Noto Serif text-2xl text-orange-50 mb-2">Ayuda</h4>
+<a class="text-orange-50/80 hover:text-white transition-colors hover:translate-x-1 transition-transform duration-200" href="#">FAQ</a>
+<a class="text-orange-50/80 hover:text-white transition-colors hover:translate-x-1 transition-transform duration-200" href="#">Envíos</a>
+<a class="text-orange-50/80 hover:text-white transition-colors hover:translate-x-1 transition-transform duration-200" href="#">Contacto</a>
+<a class="text-orange-50/80 hover:text-white transition-colors hover:translate-x-1 transition-transform duration-200" href="#">Newsletter</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="Noto Serif text-2xl text-orange-50 mb-2">Únete</h4>
+<p class="text-orange-50/80 font-light mb-4">Recibe 10% de descuento en tu primer pedido.</p>
+<div class="relative group">
+<input class="w-full bg-white/10 border-none rounded-full px-6 py-4 text-white placeholder-orange-50/40 focus:ring-2 focus:ring-orange-500/50 outline-none transition-all" placeholder="Tu email" type="email"/>
+<button class="absolute right-2 top-2 p-2 bg-orange-500 text-white rounded-full hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<div class="border-t border-white/5 py-8 text-center px-8">
+<p class="text-orange-50/60 text-sm">© 2024 Victor’s Juice Co. Freshness Bottled.</p>
+</div>
+</footer>
+</body></html>
