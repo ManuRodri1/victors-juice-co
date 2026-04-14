@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
 import styles from "./Header.module.css";
 import { useCart } from "@/context/CartContext";
 
@@ -18,6 +19,12 @@ const NAV_LINKS = [
 export default function Header() {
   const pathname = usePathname();
   const { totalItems } = useCart();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Close menu when route changes
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [pathname]);
 
   return (
     <header className={styles.header}>
@@ -34,7 +41,7 @@ export default function Header() {
           <span className={styles.logoText}>Victor's Juice Co.</span>
         </Link>
 
-        <nav className={styles.nav}>
+        <nav className={`${styles.nav} ${isMenuOpen ? styles.isOpen : ""}`}>
           {NAV_LINKS.map((link) => (
             <Link
               key={link.path}
@@ -42,6 +49,7 @@ export default function Header() {
               className={`${styles.navLink} ${
                 pathname === link.path ? styles.active : ""
               }`}
+              onClick={() => setIsMenuOpen(false)}
             >
               {link.name}
             </Link>
@@ -49,8 +57,12 @@ export default function Header() {
         </nav>
 
         <div className={styles.actions}>
-          <button className={styles.menuButton} aria-label="Menu">
-            ☰
+          <button 
+            className={styles.menuButton} 
+            aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? "✕" : "☰"}
           </button>
           <Link href="/carrito" className={styles.cartButton} aria-label="Carrito">
             <svg

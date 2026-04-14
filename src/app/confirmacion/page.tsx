@@ -9,6 +9,7 @@ export default function ConfirmacionPage() {
   const { items, subtotal, totalItems, clearCart } = useCart();
   const [mounted, setMounted] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [finalOrder, setFinalOrder] = useState<any>(null);
 
   // Form State
   const [formData, setFormData] = useState({
@@ -40,7 +41,15 @@ export default function ConfirmacionPage() {
 
     // Prepare Airtable Payload
     const productIds = items.map(item => item.id);
-    const orderSummary = items.map(item => `${item.quantity}x ${item.name}`).join(", ");
+    const orderSummary = items.map(item => `- ${item.name} x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}`).join("\n");
+
+    setFinalOrder({
+      items: [...items],
+      subtotal,
+      notes: formData.notes,
+      whatsapp: formData.whatsapp,
+      name: formData.name,
+    });
 
     try {
       const response = await fetch("/api/orders", {
@@ -95,11 +104,14 @@ export default function ConfirmacionPage() {
 
   // Generate WhatsApp Message
   const generateWhatsAppMessage = () => {
+    // Use finalOrder state so order text is preserved even if cart gets cleared
+    const orderData = finalOrder || { items, subtotal, notes: formData.notes, whatsapp: formData.whatsapp, name: formData.name };
+
     const greeting = `Hola, me gustaría confirmar este pedido de Victor's Juice Co.`;
-    const customerInfo = `*Cliente:* ${formData.name}%0A*WhatsApp:* ${formData.whatsapp}`;
-    const itemsList = items.map(item => `- ${item.quantity}x ${item.name}`).join("%0A");
-    const notesStr = formData.notes ? `%0A*Notas:* ${formData.notes}` : "";
-    const totalStr = `*Total:* $${subtotal.toFixed(2)}`;
+    const customerInfo = `*Cliente:* ${orderData.name}%0A*WhatsApp:* ${orderData.whatsapp}`;
+    const itemsList = orderData.items.map((item: any) => `- ${item.name} x${item.quantity} — $${(item.price * item.quantity).toFixed(2)}`).join("%0A");
+    const notesStr = orderData.notes ? `%0A%0A*Notas:* ${orderData.notes}` : "";
+    const totalStr = `*Total:* $${orderData.subtotal.toFixed(2)}`;
     const closing = `Por favor confírmame la disponibilidad para procesar el pago. ¡Gracias!`;
 
     const fullMessage = `${greeting}%0A%0A${customerInfo}%0A%0A*Detalles del pedido:*%0A${itemsList}${notesStr}%0A%0A${totalStr}%0A%0A${closing}`;
@@ -115,7 +127,7 @@ export default function ConfirmacionPage() {
           <div className={styles.successIcon}>🎉</div>
           <h1 className={styles.successTitle}>¡Pedido Registrado!</h1>
           <p className={styles.successDesc}>
-            Gracias {formData.name}, hemos recibido tu solicitud de pedido correctamente.<br />
+            Gracias {finalOrder?.name || formData.name}, hemos recibido tu solicitud de pedido correctamente.<br />
             Para verificar la disponibilidad y proceder con el pago, por favor escríbenos a WhatsApp.
           </p>
           <a
