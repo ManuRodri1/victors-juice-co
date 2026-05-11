@@ -4,32 +4,32 @@ import styles from "./page.module.css";
 import ProductCard from "@/components/ProductCard";
 import { getProducts, getApprovedReviews } from "@/lib/airtable";
 import type { Metadata } from "next";
+import { businessJsonLd, buildMetadata, organizationJsonLd } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Jugos Naturales en RD | Victor’s Juice Co.",
-  keywords: "jugos naturales RD, jugos frescos, jugos orgánicos",
-};
+export const metadata: Metadata = buildMetadata({
+  title: "Victor's Juice Co. | Jugos Naturales en RD",
+  description:
+    "Jugos naturales, frescos y artesanales en República Dominicana. Descubre mezclas saludables hechas con frutas seleccionadas.",
+  path: "/",
+});
 
-export const revalidate = 60; // Revalidate every minute
+export const revalidate = 60;
 
 export default async function Home() {
   const allProducts = await getProducts();
   const allReviews = await getApprovedReviews();
 
-  // "Selección del Huerto": prioritize featured products (Featured = true) and available products.
   const featuredProducts = allProducts
-    .filter(p => p.available && p.featured)
+    .filter((p) => p.available && p.featured)
     .slice(0, 4);
-    
-  // If not enough featured, fill with available
+
   if (featuredProducts.length < 3) {
     const additional = allProducts
-      .filter(p => p.available && !p.featured)
+      .filter((p) => p.available && !p.featured)
       .slice(0, 3 - featuredProducts.length);
     featuredProducts.push(...additional);
   }
 
-  // "Comunidad Victor's": limited set of approved reviews (e.g. 3)
   const homeReviews = allReviews.slice(0, 3);
 
   return (
@@ -37,60 +37,34 @@ export default async function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "LocalBusiness",
-            "name": "Victor's Juice Co.",
-            "image": "https://res.cloudinary.com/dzebed7jw/image/upload/v1774295614/ChatGPT_Image_23_mar_2026_03_50_25_p.m._spowqf.png",
-            "@id": "https://victorsjuice.co",
-            "url": "https://victorsjuice.co",
-            "telephone": "+18292610894",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "Santo Domingo",
-              "addressLocality": "Santo Domingo",
-              "addressRegion": "Distrito Nacional",
-              "addressCountry": "DO"
-            },
-            "openingHoursSpecification": {
-              "@type": "OpeningHoursSpecification",
-              "dayOfWeek": [
-                "Monday",
-                "Tuesday",
-                "Wednesday",
-                "Thursday",
-                "Friday",
-                "Saturday"
-              ],
-              "opens": "08:00",
-              "closes": "18:00"
-            }
-          })
+          __html: JSON.stringify([businessJsonLd(), organizationJsonLd()]),
         }}
       />
-      {/* Hero Section */}
       <section className={styles.hero}>
         <div className={styles.heroImageWrapper}>
-          <Image 
-            src="https://res.cloudinary.com/dzebed7jw/image/upload/v1774295614/ChatGPT_Image_23_mar_2026_03_50_25_p.m._spowqf.png" 
-            alt="jugos naturales en Santo Domingo de Victor's Juice Co"
+          <Image
+            src="https://res.cloudinary.com/dzebed7jw/image/upload/v1774295614/ChatGPT_Image_23_mar_2026_03_50_25_p.m._spowqf.png"
+            alt="Jugos naturales en Santo Domingo de Victor's Juice Co."
             fill
             quality={100}
             priority
-            className={styles.heroImage} 
+            className={styles.heroImage}
           />
           <div className={styles.heroImageOverlay}></div>
         </div>
         <div className={`container ${styles.heroContainer}`}>
           <div className={styles.heroContent}>
-            <span className={`${styles.heroBadge} ${styles.animateFadeUp}`} style={{ animationDelay: "0.1s" }}>Naturalmente Puro</span>
+            <span className={`${styles.heroBadge} ${styles.animateFadeUp}`} style={{ animationDelay: "0.1s" }}>
+              Naturalmente puro
+            </span>
             <h1 className={`${styles.heroTitle} ${styles.animateFadeUp}`} style={{ animationDelay: "0.3s" }}>
-              Jugos naturales, frescos<br/>para tu <span style={{ fontStyle: "italic", fontWeight: 400 }}>estilo de vida</span>
+              Jugos naturales, frescos
+              <br />
+              para tu <span style={{ fontStyle: "italic", fontWeight: 400 }}>estilo de vida</span>
             </h1>
             <p className={`${styles.heroDescription} ${styles.animateFadeUp}`} style={{ animationDelay: "0.5s" }}>
-              Nuestras mezclas artesanales de jugos detox y cold pressed combinan superalimentos y frutas
-              orgánicas prensadas en frío en República Dominicana, para nutrir tu cuerpo con la esencia
-              más pura de la naturaleza.
+              Mezclas artesanales de jugos naturales, detox y cold-pressed en República Dominicana,
+              preparadas con frutas seleccionadas y vegetales frescos para una rutina más saludable.
             </p>
             <div className={`${styles.heroActions} ${styles.animateFadeUp}`} style={{ animationDelay: "0.7s" }}>
               <Link href="/tienda" className={styles.btnPrimary}>
@@ -104,96 +78,94 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Featured Products */}
       <section className={styles.section}>
         <div className="container">
           <div className={styles.sectionHeader}>
             <div>
               <h2 className={styles.sectionTitle}>Selección del Huerto</h2>
               <p className={styles.sectionSubtitle}>
-                Descubre nuestros sabores más buscados, embotellados diariamente
-                para garantizar la máxima frescura.
+                Descubre nuestros jugos saludables más buscados, embotellados diariamente para garantizar
+                frescura, sabor limpio y una experiencia premium.
               </p>
             </div>
             <Link href="/tienda" className={styles.linkAll}>
-              Ver toda la tienda →
+              Ver toda la tienda &rarr;
             </Link>
           </div>
           <div className={styles.productsGrid}>
             {featuredProducts.length > 0 ? (
-              featuredProducts.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))
+              featuredProducts.map((product) => <ProductCard key={product.id} product={product} />)
             ) : (
-               <p className={styles.emptyStateFallback}>Explora nuestra tienda para ver los jugos disponibles. ¡Pronto añadiremos más!</p>
+              <p className={styles.emptyStateFallback}>
+                Explora nuestra tienda para ver los jugos disponibles. Pronto añadiremos más.
+              </p>
             )}
           </div>
         </div>
       </section>
 
-      {/* Story Section */}
       <section className={`${styles.section} ${styles.storySection}`}>
         <div className={`container ${styles.storyContainer}`}>
           <div className={styles.storyImageWrapper}>
-            <video 
-              src="https://res.cloudinary.com/dzebed7jw/video/upload/v1775676458/Victor_s_Juice_Co._wwdhgb.mp4" 
-              className={styles.storyImage} 
-              autoPlay 
-              muted 
-              loop 
+            <video
+              src="https://res.cloudinary.com/dzebed7jw/video/upload/v1775676458/Victor_s_Juice_Co._wwdhgb.mp4"
+              className={styles.storyImage}
+              autoPlay
+              muted
+              loop
               playsInline
             />
           </div>
           <div>
-            <span className={styles.storySubtitle}>Nuestra Esencia Orgánica</span>
+            <span className={styles.storySubtitle}>Nuestra esencia orgánica</span>
             <h2 className={styles.sectionTitle}>De la tierra a tu mesa, sin escalas.</h2>
             <p className={styles.heroDescription}>
-              En Victor's Juice Co., creemos que la verdadera salud no tiene atajos.
-              Trabajamos directamente con agricultores locales que respetan los ciclos naturales de la tierra.
+              En Victor&apos;s Juice Co. creemos que la verdadera salud no tiene atajos. Trabajamos con
+              ingredientes locales y procesos cuidados para crear bebidas saludables en RD.
             </p>
 
             <div className={styles.storyFeatures}>
               <div className={styles.feature}>
                 <div className={styles.featureIcon}>🌱</div>
                 <div>
-                  <h3 className={styles.featureTitle}>100% Orgánico Certificado</h3>
-                  <p className={styles.featureDesc}>Sin pesticidas ni químicos sintéticos. Solo pureza vegetal.</p>
+                  <h3 className={styles.featureTitle}>Ingredientes seleccionados</h3>
+                  <p className={styles.featureDesc}>Frutas y vegetales frescos, sin atajos innecesarios.</p>
                 </div>
               </div>
               <div className={styles.feature}>
                 <div className={styles.featureIcon}>❄️</div>
                 <div>
-                  <h3 className={styles.featureTitle}>Prensado en Frío</h3>
-                  <p className={styles.featureDesc}>Mantenemos todas las enzimas y vitaminas intactas.</p>
+                  <h3 className={styles.featureTitle}>Prensado en frío</h3>
+                  <p className={styles.featureDesc}>Cuidamos sabor, textura y nutrientes desde el primer sorbo.</p>
                 </div>
               </div>
             </div>
 
-            <div style={{ marginTop: '2rem' }}>
+            <div style={{ marginTop: "2rem" }}>
               <Link href="/sobre-nosotros" className={styles.linkAll}>
-                Conoce nuestra historia →
+                Conoce nuestra historia &rarr;
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Testimonials */}
       <section className={`${styles.section} ${styles.testimonialsSection}`}>
         <div className="container">
-          <h2 className={styles.sectionTitle}>Comunidad Victor's</h2>
+          <h2 className={styles.sectionTitle}>Comunidad Victor&apos;s</h2>
           <p className={styles.testimonialsSubtitle}>
-            "El cambio en mi energía ha sido increíble desde que integré estos jugos en mi mañana."
+            &ldquo;El cambio en mi energía ha sido increíble desde que integré estos jugos en mi mañana.&rdquo;
           </p>
 
           <div className={styles.testimonialsGrid}>
             {homeReviews.length > 0 ? (
               homeReviews.map((r, i) => (
-                <div key={r.id} className={`${styles.testimonialCard} ${i === 1 ? styles.highlighted : ''}`}>
-                  <div className={styles.stars}>{"★".repeat(r.rating)}<span style={{color: 'rgba(0,0,0,0.1)'}}>{"★".repeat(5-r.rating)}</span></div>
-                  <p className={styles.testimonialText}>
-                    "{r.comment}"
-                  </p>
+                <div key={r.id} className={`${styles.testimonialCard} ${i === 1 ? styles.highlighted : ""}`}>
+                  <div className={styles.stars}>
+                    {"★".repeat(r.rating)}
+                    <span style={{ color: "rgba(0,0,0,0.1)" }}>{"★".repeat(5 - r.rating)}</span>
+                  </div>
+                  <p className={styles.testimonialText}>&ldquo;{r.comment}&rdquo;</p>
                   <div className={styles.author}>
                     <div className={styles.authorName}>{r.customerName}</div>
                     <div className={styles.authorTitle}>Cliente verificado</div>
@@ -201,13 +173,15 @@ export default async function Home() {
                 </div>
               ))
             ) : (
-              <p className={styles.emptyStateFallback}>Sé el primero en probar nuestros jugos naturales y dejarnos tu opinión.</p>
+              <p className={styles.emptyStateFallback}>
+                Sé el primero en probar nuestros jugos naturales y dejarnos tu opinión.
+              </p>
             )}
           </div>
-          
-          <div style={{ marginTop: '2rem', display: 'flex', justifyContent: 'center' }}>
+
+          <div style={{ marginTop: "2rem", display: "flex", justifyContent: "center" }}>
             <Link href="/resenas" className={styles.linkAll}>
-              Leer más reseñas →
+              Leer más reseñas &rarr;
             </Link>
           </div>
         </div>

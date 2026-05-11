@@ -77,7 +77,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={product.image}
-              alt={`${product.name} - jugo natural fresco Victor's Juice Co`}
+              alt={`${product.name} - jugo natural fresco de Victor's Juice Co.`}
               className={`${styles.image} ${isHovered ? styles.imageHovered : ''}`}
             />
           </div>

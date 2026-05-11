@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Sobre Nosotros | Victor's Juice Co.",
-  description: "Conoce nuestra historia y el compromiso de Victor's Juice Co. con ofrecer los mejores jugos naturales y detox en República Dominicana.",
-  keywords: "jugos naturales RD, jugos saludables, jugos en Santo Domingo, tienda de jugos naturales",
-};
+  description:
+    "Conoce la historia de Victor's Juice Co. y nuestro compromiso con jugos naturales, frescos y artesanales en República Dominicana.",
+  path: "/sobre-nosotros",
+});
 
 export default function SobreNosotrosPage() {
   return (
@@ -14,17 +16,18 @@ export default function SobreNosotrosPage() {
           Nuestra Historia
         </h1>
         <p style={{ fontSize: "1.1rem", color: "var(--color-text-muted)", lineHeight: 1.8, marginBottom: "var(--spacing-2xl)" }}>
-          Victor's Juice Co. nació de una pasión simple: llevar los beneficios reales de la 
-          naturaleza directamente a tu mesa en República Dominicana. Elaboramos bebidas saludables en RD sin escalas, conservantes o atajos.
+          Victor&apos;s Juice Co. nació de una pasión simple: llevar los beneficios reales de la
+          naturaleza directamente a tu mesa en República Dominicana. Elaboramos bebidas saludables
+          en RD sin escalas, conservantes ni atajos.
         </p>
 
         <div style={{ position: "relative", width: "100%", height: "400px", borderRadius: "var(--radius-xl)", overflow: "hidden", marginBottom: "var(--spacing-3xl)" }}>
-          <video 
-            src="https://res.cloudinary.com/dzebed7jw/video/upload/v1775676458/Victor_s_Juice_Co._wwdhgb.mp4" 
-            style={{ width: "100%", height: "100%", objectFit: "cover" }} 
-            autoPlay 
-            muted 
-            loop 
+          <video
+            src="https://res.cloudinary.com/dzebed7jw/video/upload/v1775676458/Victor_s_Juice_Co._wwdhgb.mp4"
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            autoPlay
+            muted
+            loop
             playsInline
           />
         </div>
@@ -34,18 +37,18 @@ export default function SobreNosotrosPage() {
             Compromiso con la Calidad
           </h2>
           <p style={{ lineHeight: 1.8, color: "var(--color-text-main)", marginBottom: "var(--spacing-xl)" }}>
-            Trabajamos mano a mano con agricultores locales que practican la agricultura 
-            orgánica regenerativa. Cada botella de nuestros jugos naturales a domicilio en RD que llega a tus 
-            manos está llena de hasta un kilo de verduras y frutas de temporada, ideales como jugos detox.
+            Trabajamos con ingredientes frescos y seleccionados para que cada botella de nuestros
+            jugos naturales en Santo Domingo llegue con sabor limpio, textura cuidada y una
+            experiencia premium.
           </p>
 
           <h2 style={{ fontSize: "2rem", color: "var(--color-primary)", marginBottom: "var(--spacing-md)" }}>
             Prensado en Frío
           </h2>
           <p style={{ lineHeight: 1.8, color: "var(--color-text-main)", marginBottom: "var(--spacing-xl)" }}>
-            A diferencia de las licuadoras tradicionales que generan calor, nuestra 
-            tecnología de prensado en frío aplica miles de libras de presión para extraer 
-            el jugo, manteniendo intactas todas las vitaminas, minerales y enzimas vivas.
+            A diferencia de las licuadoras tradicionales que generan calor, nuestra tecnología de
+            prensado en frío extrae el jugo cuidando vitaminas, minerales y el sabor natural de
+            frutas y vegetales.
           </p>
         </div>
       </div>

@@ -3,112 +3,153 @@ import { getProductBySlug, getProducts } from "@/lib/airtable";
 import AddToCartActionBar from "./AddToCartButton";
 import ProductCard from "@/components/ProductCard";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getProductHref } from "@/lib/slugs";
+import { absoluteUrl, buildMetadata, SITE_NAME } from "@/lib/seo";
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+type ProductPageProps = {
+  params: Promise<{ slug: string }>;
+};
+
+export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
   const { slug } = await params;
   const product = await getProductBySlug(slug);
 
-  if (!product) {
-    return { title: "Producto no encontrado | Victor's Juice Co." };
+  if (!product || !product.available) {
+    return buildMetadata({
+      title: "Producto no encontrado | Victor's Juice Co.",
+      description: "Este producto ya no está disponible en Victor's Juice Co.",
+      path: `/producto/${slug}`,
+      noIndex: true,
+    });
   }
 
-  return {
+  const path = getProductHref(product.slug);
+
+  return buildMetadata({
     title: `${product.name} | Victor's Juice Co.`,
-    description: product.description || `Jugo natural prensado en frío ${product.name}. Refrescante y saludable.`,
-  };
+    description:
+      product.description ||
+      `Compra ${product.name}, un jugo natural fresco de Victor's Juice Co. en República Dominicana.`,
+    path,
+    image: product.image,
+  });
 }
 
 export const revalidate = 60;
 
 export async function generateStaticParams() {
   const products = await getProducts();
-  return products.map((p) => ({
-    slug: p.slug,
-  }));
+  const seenSlugs = new Set<string>();
+
+  return products
+    .filter((p) => {
+      if (!p.available || !p.slug || p.slug === "producto" || seenSlugs.has(p.slug)) {
+        return false;
+      }
+
+      seenSlugs.add(p.slug);
+      return true;
+    })
+    .map((p) => ({ slug: p.slug }));
 }
 
-export default async function ProductDetail({ params }: { params: Promise<{ slug: string }> }) {
+export default async function ProductDetail({ params }: ProductPageProps) {
   const { slug } = await params;
   const product = await getProductBySlug(slug);
 
   if (!product || !product.available) {
-    return (
-      <main className={`container ${styles.main}`}>
-        <section className={styles.notFoundState}>
-          <div className={styles.notFoundEyebrow}>Producto no encontrado</div>
-          <h1 className={styles.notFoundTitle}>No encontramos este jugo.</h1>
-          <p className={styles.notFoundText}>
-            Puede que el producto ya no esté disponible o que el enlace haya cambiado. Explora la tienda para ver la selección actual.
-          </p>
-          <Link href="/tienda" className={styles.notFoundLink}>
-            Ver productos
-          </Link>
-        </section>
-      </main>
-    );
+    notFound();
   }
 
   const products = await getProducts();
-  // Related products
   const related = products.filter((p) => p.id !== product.id && p.available).slice(0, 3);
-
-  // Old price simulation (+15%)
   const oldPrice = (product.price * 1.15).toFixed(2);
+  const productPath = getProductHref(product.slug);
+
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "@id": `${absoluteUrl(productPath)}#product`,
+    name: product.name,
+    image: product.image,
+    description: product.description || "Jugo natural fresco de Victor's Juice Co.",
+    category: product.category,
+    brand: {
+      "@type": "Brand",
+      name: SITE_NAME,
+    },
+    offers: {
+      "@type": "Offer",
+      url: absoluteUrl(productPath),
+      priceCurrency: "DOP",
+      price: product.price,
+      availability: "https://schema.org/InStock",
+      itemCondition: "https://schema.org/NewCondition",
+    },
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Inicio",
+        item: absoluteUrl("/"),
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Tienda",
+        item: absoluteUrl("/tienda"),
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: product.name,
+        item: absoluteUrl(productPath),
+      },
+    ],
+  };
 
   return (
     <main className={`container ${styles.main}`}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify([productJsonLd, breadcrumbJsonLd]) }}
+      />
       <div className={styles.heroGrid}>
-        {/* LEFT COLUMN - Image Presentation */}
         <div className={styles.imagePlacard}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={product.image} alt={`${product.name} - jugo natural fresco prensado en frío Victor's Juice Co`} className={styles.productImg} />
+          <img
+            src={product.image}
+            alt={`${product.name} - jugo natural fresco prensado en frío de Victor's Juice Co.`}
+            className={styles.productImg}
+          />
           <div className={styles.floatingFeature}>
             <div className={styles.floatingTitle}>Cold-Pressed</div>
             <div className={styles.floatingDesc}>Extraído en frío para preservar cada nutriente esencial.</div>
           </div>
         </div>
 
-        {/* RIGHT COLUMN - Info */}
         <div>
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "Product",
-                "name": product.name,
-                "image": product.image,
-                "description": product.description || "Jugo natural prensado en frío.",
-                "brand": {
-                  "@type": "Brand",
-                  "name": "Victor's Juice Co."
-                },
-                "offers": {
-                  "@type": "Offer",
-                  "url": `https://victorsjuice.co${getProductHref(product.slug)}`,
-                  "priceCurrency": "DOP",
-                  "price": product.price,
-                  "availability": "https://schema.org/InStock",
-                  "itemCondition": "https://schema.org/NewCondition"
-                }
-              })
-            }}
-          />
           <div className={styles.breadcrumb}>
-            JUGOS / <span>{product.category || "PREMIUM SERIES"}</span>
+            <Link href="/tienda">JUGOS</Link> / <span>{product.category || "PREMIUM SERIES"}</span>
           </div>
           <h1 className={styles.title}>{product.name}</h1>
-          
+
           <div className={styles.priceBlock}>
             <span className={styles.price}>${product.price.toFixed(2)}</span>
             <span className={styles.oldPrice}>${oldPrice}</span>
           </div>
-          
+
           <p className={styles.description}>
-            {product.description || "Una alquimia revitalizante de frutas orgánicas prensadas en frío."}
-            Nuestras mezclas son diseñadas para regenerar tu cuerpo y elevar tu energía natural desde el primer sorbo.
+            {product.description || "Una mezcla revitalizante de frutas seleccionadas prensadas en frío."}
+            {" "}Este jugo natural está diseñado para acompañar una rutina saludable con frescura,
+            sabor artesanal y energía limpia.
           </p>
 
           <div className={styles.featuresGrid}>
@@ -138,18 +179,19 @@ export default async function ProductDetail({ params }: { params: Promise<{ slug
         </div>
       </div>
 
-      {/* LOWER INFO GRID */}
       <div className={styles.infoGrid}>
         <div>
           <h2 className={styles.infoTitle}>Ingredientes Reales</h2>
           <p className={styles.infoText}>
-            No escondemos nada. Nuestro jugo {product.name} contiene ingredientes prensados el mismo día de entrega para conservar todos sus nutrientes vivos naturales y antioxidantes.
+            Nuestro jugo {product.name} contiene ingredientes frescos preparados para conservar
+            sabor, textura y nutrientes naturales.
           </p>
         </div>
         <div>
-          <h2 className={styles.infoTitle}>Compromiso Ético</h2>
+          <h2 className={styles.infoTitle}>Compromiso Local</h2>
           <p className={styles.infoText}>
-            Trabajamos directamente con agricultores locales para asegurar que cada fruta sea recolectada en su punto óptimo de madurez y bajo condiciones sustentables.
+            Seleccionamos frutas y vegetales con enfoque en calidad, frescura y una experiencia
+            artesanal pensada para República Dominicana.
           </p>
         </div>
         <div>
@@ -159,7 +201,7 @@ export default async function ProductDetail({ params }: { params: Promise<{ slug
             <span>120 kcal</span>
           </div>
           <div className={styles.nutriRow}>
-            <span>Azúcar (Natural)</span>
+            <span>Azúcar natural</span>
             <span>14g</span>
           </div>
           <div className={styles.nutriRow}>
@@ -169,7 +211,6 @@ export default async function ProductDetail({ params }: { params: Promise<{ slug
         </div>
       </div>
 
-      {/* RELATED PRODUCTS */}
       {related.length > 0 && (
         <section className={styles.relatedSection}>
           <div className={styles.relatedHeader}>
