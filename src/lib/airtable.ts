@@ -1,6 +1,38 @@
 import { Product } from "@/components/ProductCard";
+import { normalizeSlug } from "@/lib/slugs";
 
 // --- PRODUCTS ---
+
+type AirtableAttachment = {
+  url: string;
+};
+
+type AirtableProductFields = {
+  Name?: string;
+  Slug?: string;
+  Description?: string;
+  Price?: number | string;
+  Image?: AirtableAttachment[];
+  Category?: string;
+  Availability?: boolean | string;
+  Featured?: boolean;
+  Badge?: string;
+};
+
+type AirtableRecord<TFields> = {
+  id: string;
+  createdTime?: string;
+  fields: TFields;
+};
+
+type AirtableOrderFields = {
+  "Customer Name": string;
+  "WhatsApp Number": string;
+  "Products": string[];
+  "Total": number;
+  "Status": string;
+  "Notes"?: string;
+};
 
 export async function getProducts(): Promise<Product[]> {
   const BASE_ID = process.env.AIRTABLE_BASE_ID;
@@ -18,17 +50,30 @@ export async function getProducts(): Promise<Product[]> {
     if (!res.ok) throw new Error(`Airtable Error: ${res.statusText}`);
     
     const data = await res.json();
-    return data.records.map((record: any) => {
+    return data.records.map((record: AirtableRecord<AirtableProductFields>) => {
       const f = record.fields;
       // Handle Airtable Image attached array
       const imageUrl = f.Image && f.Image.length > 0 ? f.Image[0].url : "/orange_juice.png";
+      const name = f.Name || "Producto";
+      const sourceSlug = f.Slug || name;
+      const slug = normalizeSlug(sourceSlug);
+
+      if (process.env.NODE_ENV === "development") {
+        console.debug("[products] Airtable product slug mapping", {
+          id: record.id,
+          name,
+          airtableSlug: f.Slug || "",
+          normalizedSlug: slug,
+          href: `/producto/${slug}`,
+        });
+      }
       
       return {
         id: record.id, // Using Airtable record ID
-        slug: f.Slug || record.id,
-        name: f.Name,
+        slug: slug || record.id,
+        name,
         description: f.Description || "",
-        price: typeof f.Price === 'number' ? f.Price : parseFloat(f.Price) || 0,
+        price: typeof f.Price === 'number' ? f.Price : parseFloat(f.Price || "") || 0,
         image: imageUrl,
         category: f.Category || "Otros",
         featured: !!f.Featured,
@@ -42,6 +87,24 @@ export async function getProducts(): Promise<Product[]> {
   }
 }
 
+export async function getProductBySlug(slug: string): Promise<Product | null> {
+  const normalizedSlug = normalizeSlug(decodeURIComponent(slug));
+  const products = await getProducts();
+  const product = products.find((p) => normalizeSlug(p.slug) === normalizedSlug) || null;
+
+  if (process.env.NODE_ENV === "development") {
+    console.debug("[products] getProductBySlug", {
+      receivedSlug: slug,
+      normalizedSlug,
+      found: !!product,
+      productId: product?.id,
+      productName: product?.name,
+    });
+  }
+
+  return product;
+}
+
 // --- REVIEWS ---
 
 export interface Review {
@@ -52,6 +115,14 @@ export interface Review {
   approved: boolean;
   createdAt: string;
 }
+
+type AirtableReviewFields = {
+  "Customer Name"?: string;
+  Rating?: number;
+  Comment?: string;
+  Approved?: boolean;
+  "Created At"?: string;
+};
 
 export async function getApprovedReviews(): Promise<Review[]> {
   const BASE_ID = process.env.AIRTABLE_BASE_ID;
@@ -71,7 +142,7 @@ export async function getApprovedReviews(): Promise<Review[]> {
     if (!res.ok) throw new Error(`Airtable Error: ${res.statusText}`);
     
     const data = await res.json();
-    return data.records.map((record: any) => {
+    return data.records.map((record: AirtableRecord<AirtableReviewFields>) => {
       const f = record.fields;
       return {
         id: record.id,
@@ -110,7 +181,7 @@ export async function createOrder(order: OrderPayload) {
   const table = process.env.AIRTABLE_ORDERS_TABLE || "Orders";
   const url = `https://api.airtable.com/v0/${BASE_ID}/${table}`;
   
-  const fields = {
+  const fields: AirtableOrderFields = {
     "Customer Name": order.customerName,
     "WhatsApp Number": order.whatsapp,
     "Products": order.productIds,
@@ -119,7 +190,6 @@ export async function createOrder(order: OrderPayload) {
   };
 
   if (order.notes && order.notes.trim() !== "") {
-    // @ts-ignore
     fields["Notes"] = order.notes;
   }
 

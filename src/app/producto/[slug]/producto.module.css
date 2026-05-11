@@ -17,7 +17,7 @@
 
 /* LEFT COLUMN */
 .imagePlacard {
-  background-color: #1a2a35; /* Default, overridden in TSX */
+  background: #fbfaf6;
   border-radius: var(--radius-2xl);
   aspect-ratio: 4 / 5;
   display: flex;
@@ -25,34 +25,38 @@
   justify-content: center;
   position: relative;
   overflow: hidden;
-  padding: 3rem;
+  padding: 1rem;
+  border: 1px solid rgba(0,0,0,0.04);
+  box-shadow: 0 18px 50px rgba(21, 71, 38, 0.08);
 }
 
 .productImg {
-  width: auto;
+  width: 100%;
   height: 100%;
   max-width: 100%;
+  border-radius: calc(var(--radius-2xl) - 12px);
   object-fit: contain;
-  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.4));
+  filter: none;
   z-index: 10;
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .imagePlacard:hover .productImg {
-  transform: scale(1.05) translateY(-10px);
+  transform: scale(1.02);
 }
 
 .floatingFeature {
   position: absolute;
   bottom: 2rem;
   right: 2rem;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.86);
   backdrop-filter: blur(12px);
   padding: 1rem 1.5rem;
   border-radius: var(--radius-lg);
-  border: 1px solid rgba(255,255,255,0.2);
+  border: 1px solid rgba(21, 71, 38, 0.08);
   max-width: 250px;
-  color: white;
+  color: var(--color-text-main);
   z-index: 20;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.08);
 }
 
 .floatingTitle {
@@ -66,7 +70,51 @@
 .floatingDesc {
   font-size: 0.85rem;
   line-height: 1.4;
-  color: rgba(255,255,255,0.9);
+  color: var(--color-text-muted);
+}
+
+.notFoundState {
+  max-width: 640px;
+  margin: 5rem auto;
+  padding: 4rem 2rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: var(--radius-2xl);
+  border: 1px solid rgba(0,0,0,0.04);
+}
+
+.notFoundEyebrow {
+  color: var(--color-secondary);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-sm);
+}
+
+.notFoundTitle {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: var(--spacing-md);
+}
+
+.notFoundText {
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  margin: 0 auto var(--spacing-xl);
+  max-width: 480px;
+}
+
+.notFoundLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 1.5rem;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-weight: 700;
+  text-decoration: none;
 }
 
 /* RIGHT COLUMN */

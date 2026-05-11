@@ -1,16 +1,14 @@
-import { notFound } from "next/navigation";
 import styles from "./producto.module.css";
-import { getProducts } from "@/lib/airtable";
+import { getProductBySlug, getProducts } from "@/lib/airtable";
 import AddToCartActionBar from "./AddToCartButton";
 import ProductCard from "@/components/ProductCard";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { getProductHref } from "@/lib/slugs";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const decodedSlug = decodeURIComponent(slug);
-  const products = await getProducts();
-  const product = products.find((p) => p.slug === decodedSlug);
+  const product = await getProductBySlug(slug);
 
   if (!product) {
     return { title: "Producto no encontrado | Victor's Juice Co." };
@@ -33,24 +31,28 @@ export async function generateStaticParams() {
 
 export default async function ProductDetail({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const decodedSlug = decodeURIComponent(slug);
-  const products = await getProducts();
-  const product = products.find((p) => p.slug === decodedSlug);
+  const product = await getProductBySlug(slug);
 
   if (!product || !product.available) {
-    return notFound();
+    return (
+      <main className={`container ${styles.main}`}>
+        <section className={styles.notFoundState}>
+          <div className={styles.notFoundEyebrow}>Producto no encontrado</div>
+          <h1 className={styles.notFoundTitle}>No encontramos este jugo.</h1>
+          <p className={styles.notFoundText}>
+            Puede que el producto ya no esté disponible o que el enlace haya cambiado. Explora la tienda para ver la selección actual.
+          </p>
+          <Link href="/tienda" className={styles.notFoundLink}>
+            Ver productos
+          </Link>
+        </section>
+      </main>
+    );
   }
 
+  const products = await getProducts();
   // Related products
   const related = products.filter((p) => p.id !== product.id && p.available).slice(0, 3);
-
-  // Hash background color
-  const bgColors = ["#1a2a35", "#E3B5A4", "#89AE5D", "#F0C14B", "#1D3241", "#9DBBB1"];
-  let hash = 0;
-  for (let i = 0; i < product.slug.length; i++) {
-    hash = product.slug.charCodeAt(i) + ((hash << 5) - hash);
-  }
-  const bgColor = bgColors[Math.abs(hash) % bgColors.length];
 
   // Old price simulation (+15%)
   const oldPrice = (product.price * 1.15).toFixed(2);
@@ -59,7 +61,7 @@ export default async function ProductDetail({ params }: { params: Promise<{ slug
     <main className={`container ${styles.main}`}>
       <div className={styles.heroGrid}>
         {/* LEFT COLUMN - Image Presentation */}
-        <div className={styles.imagePlacard} style={{ backgroundColor: bgColor }}>
+        <div className={styles.imagePlacard}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={product.image} alt={`${product.name} - jugo natural fresco prensado en frío Victor's Juice Co`} className={styles.productImg} />
           <div className={styles.floatingFeature}>
@@ -85,7 +87,7 @@ export default async function ProductDetail({ params }: { params: Promise<{ slug
                 },
                 "offers": {
                   "@type": "Offer",
-                  "url": `https://victorsjuice.co/producto/${product.slug}`,
+                  "url": `https://victorsjuice.co${getProductHref(product.slug)}`,
                   "priceCurrency": "DOP",
                   "price": product.price,
                   "availability": "https://schema.org/InStock",

@@ -5,6 +5,7 @@ import Link from "next/link";
 import styles from "./ProductCard.module.css";
 import { useCart } from "@/context/CartContext";
 import ConfirmModal from "./ConfirmModal";
+import { getProductHref } from "@/lib/slugs";
 
 export interface Product {
   id: string;
@@ -23,18 +24,14 @@ interface ProductCardProps {
   product: Product;
 }
 
-const bgColors = ["#89AE5D", "#1D3241", "#FFFFFF", "#F0C14B", "#E3B5A4", "#9DBBB1"];
 function getHashData(str: string) {
   let hash = 0;
   for (let i = 0; i < str.length; i++) {
     hash = str.charCodeAt(i) + ((hash << 5) - hash);
   }
-  const colorIndex = Math.abs(hash) % bgColors.length;
-  // Make badge color contrasting based on background
-  const isDark = colorIndex === 1 || colorIndex === 0;
+  const isDark = Math.abs(hash) % 2 === 0;
   
   return { 
-    bgColor: bgColors[colorIndex], 
     badgeClass: isDark ? styles.badgeLight : styles.badgeDark 
   };
 }
@@ -44,7 +41,17 @@ export default function ProductCard({ product }: ProductCardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
-  const { bgColor, badgeClass } = getHashData(product.slug);
+  const { badgeClass } = getHashData(product.slug);
+  const productHref = getProductHref(product.slug);
+
+  if (process.env.NODE_ENV === "development") {
+    console.debug("[ProductCard] product href", {
+      id: product.id,
+      name: product.name,
+      slug: product.slug,
+      href: productHref,
+    });
+  }
 
   const handleConfirm = () => {
     addToCart({
@@ -64,8 +71,8 @@ export default function ProductCard({ product }: ProductCardProps) {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <Link href={`/producto/${product.slug}`} className={styles.imageLink}>
-          <div className={styles.imageWrapper} style={{ backgroundColor: bgColor }}>
+        <Link href={productHref} className={styles.imageLink}>
+          <div className={styles.imageWrapper}>
             {product.badge && <span className={`${styles.badge} ${badgeClass}`}>{product.badge}</span>}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -78,7 +85,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         
         <div className={styles.content}>
           <div className={styles.infoCol}>
-            <Link href={`/producto/${product.slug}`} className={styles.titleLink}>
+            <Link href={productHref} className={styles.titleLink}>
               <h3 className={styles.title} title={product.name}>{product.name}</h3>
             </Link>
             <p className={styles.ingredients} title={product.description}>
